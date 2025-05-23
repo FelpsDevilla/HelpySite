@@ -1,64 +1,34 @@
-<Section id="section-wallpaper">
-
-  <header id="header">
+<section id="section-wallpaper">
+  <header id="header" [class.scrolled]="scrolled">
     <a href="#header"><img src="logo.png" alt="Logo" id="inicioLogo" /></a>
     <nav>
-      <ul>
-        <li><a href="#QuemSomos">Quem Somos</a></li>
-        <li><a href="#Servicos">Serviços</a></li>
-        <li><a href="#Equipe">Equipe</a></li>
-        <li><a href="#Contato">Contato</a></li>
-      </ul>
+      <a href="#QuemSomos">Quem Somos</a>
+      <a href="#Servicos">Serviços</a>
+      <a href="#Contato">Contato</a>
     </nav>
   </header>
 
   <section id="inicio">
     <h1 class="inicioItens">Helpy Service</h1>
     <h3 class="inicioItens">Atualizamos sua infra para o futuro</h3>
-    <a class="inicioItens" href="#Contato"><button class="contatoButton">Entre em contato</button></a>
+    <a class="inicioItens" href="#Contato"
+      ><button class="contatoButton">Entre em contato</button>
+    </a>
   </section>
+</section>
 
-</Section>
-  
-  <main>
-  
-    <section id="QuemSomos">
-      <h2>Quem Somos</h2>
-      <p>
-        A Helpy Service é uma empresa especializada em soluções B2B, oferecendo serviços completos de manutenção de infraestrutura de redes, 
-        instalação de câmeras de segurança, manutenção de equipamentos de CFTV e sistemas de controle de acesso. Com foco em qualidade, agilidade e segurança, 
-        atuamos para garantir que nossos clientes tenham operações mais eficientes e ambientes monitorados com tecnologia de ponta. 
-        Nossa equipe técnica é altamente capacitada e comprometida em entregar resultados confiáveis, personalizados de acordo com as necessidades de cada empresa.
-      </p>
-    </section>
-  
-    <section id="Servicos">
-      <h2>Serviços</h2>
-    </section>
-  
-    <section id="Equipe">
-      <h2>Equipe</h2>
-    </section>
-  
-    <section id="Contato">
-      <h2>Fale Conosco</h2>
-      <h1>Solicite um Orçamento</h1>
-      <form action="">
-  
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" />
-  
-        <label for="empresa">Empresa</label>
-        <input type="text" id="empresa" name="empresa" />
-  
-        <label for="telefone">Telefone</label>
-        <input type="tel" id="telefone" name="telefone" />
-  
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email">
-      </form>
-    </section>
-  </main>
-  
-  <footer></footer>
-  
+<section id="whatsapp">
+  <a
+    href="https://wa.me/555597128295?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento%20para%20minha%20empresa"
+    target="_blank"
+    ><img src="logo-whatsapp.svg" alt="whatsapp"
+  /></a>
+</section>
+
+<main>
+  <app-quem-somos></app-quem-somos>
+  <app-servicos></app-servicos>
+  <app-contato></app-contato>
+</main>
+
+<footer></footer>
