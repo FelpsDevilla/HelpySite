@@ -2,13 +2,13 @@
 export default {
   bootstrap: () => import('./main.server.mjs').then(m => m.default),
   inlineCriticalCss: true,
-  baseHref: '/',
+  baseHref: '/HelpySite/',
   locale: undefined,
   routes: undefined,
   entryPointToBrowserMapping: {},
   assets: {
-    'index.csr.html': {size: 23540, hash: '7f5c5b35ab561e321536ca53eb00d96c2ec79d5d276d035c44f1d06ea5d4d123', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
-    'index.server.html': {size: 17114, hash: 'e518690756b102062651e10708ca899aaf5d4ea0c8068f0cbfcdc80889cef1eb', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
+    'index.csr.html': {size: 23550, hash: '392df52fe1a1abb6bff799e88e968248b16ccb214f05f2b7a3dd1705ea0c474c', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
+    'index.server.html': {size: 17124, hash: 'fbbcad7eef80ed931fdaf7b6c8543725560f354aefda9bd1df8c6ecdef0736a3', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
     'styles-GP4765U6.css': {size: 7136, hash: 'rpAAucZ28J4', text: () => import('./assets-chunks/styles-GP4765U6_css.mjs').then(m => m.default)}
   },
 };
