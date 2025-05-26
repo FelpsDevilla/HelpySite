@@ -1,0 +1,44 @@
+footer {
+  background-color: rgb(51, 51, 51);
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+footer nav {
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+footer nav .ContatoInfo {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footerIcon {
+  width: 5vh;
+}
+
+.Copyright{
+    margin: 0.5vh 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  rgb(27, 27, 27);
+    color: white;
+}
+
+#linkedin{
+    color: white;
+    text-decoration: none;
+        padding: 0.5vh;
+}
+
+#linkedin:hover {
+    border-radius: 5%;
+    background-color: red;
+}

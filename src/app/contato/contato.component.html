@@ -1,0 +1,47 @@
+<div id="background">
+  <section
+    id="Contato"
+    class="marginSides marginTopAndBottom paddingTopAndBottom"
+  >
+    <div class="titulos">
+      <h2>Fale Conosco</h2>
+      <h1>Solicite um Orçamento</h1>
+    </div>
+
+    <div class="form-container">
+      <form
+        class="form-grid"
+        action="mailto:contato@helpyservice.com.br?subject=Solicitação%20de%20Orçamento&body={{ mensagem }}"
+        method="POST"
+        enctype="text/plain"
+      >
+        <div class="form-group">
+          <label class="required">Nome</label>
+          <input type="text" required />
+        </div>
+
+        <div class="form-group">
+          <label>Empresa</label>
+          <input type="text" />
+        </div>
+
+        <div class="form-group">
+          <label class="required">Telefone</label>
+          <input type="tel" required />
+        </div>
+
+        <div class="form-group">
+          <label class="required">Email</label>
+          <input type="email" required />
+        </div>
+
+        <div class="form-group" style="grid-column: span 2">
+          <label class="required" >Mensagem</label>
+          <textarea required [(value)]="mensagem"></textarea>
+        </div>
+
+        <button type="submit" class="submit-button">Enviar</button>
+      </form>
+    </div>
+  </section>
+</div>
