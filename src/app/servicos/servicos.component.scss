@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .Cards {
@@ -19,6 +20,14 @@
 
 .Cards mat-card {
   margin: 0.5vw;
+}
+
+.Cards mat-card img {
+  height: 20vh;
+}
+
+#truck {
+  margin: 0 2vw;
 }
 
 .example-card {
@@ -32,13 +41,22 @@
 
 @media (max-width: 768px) {
   .Cards {
-    display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: center;
     flex-flow: column;
   }
 
   .example-card {
     width: 300px;
+  }
+
+  #truck {
+    width: 60vw;
+    max-width: max-content;
+    align-self: center;
+  }
+
+  .Cards mat-card {
+    margin: 2vh;
   }
 }

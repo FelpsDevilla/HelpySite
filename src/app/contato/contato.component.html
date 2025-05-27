@@ -1,46 +1,40 @@
 <div id="background" class="paddingTopAndBottom">
-  <section
-    id="Contato"
-    class="marginSides paddingTopAndBottom"
-  >
+  <section id="Contato">
     <div class="titulos">
       <h2>Fale Conosco</h2>
       <h1>Solicite um Orçamento</h1>
-    </div> 
+    </div>
   </section>
   <div class="form-container">
-    <form
-      class="form-grid"
-      action="mailto:contato@helpyservice.com.br?subject=Solicitação%20de%20Orçamento&body={{ mensagem }}"
-      method="POST"
-      enctype="text/plain"
-    >
+    <form class="form-grid">
       <div class="form-group">
         <label class="required">Nome</label>
-        <input type="text" required />
+        <input type="text" [(ngModel)]="nome" name="nome" required />
       </div>
 
       <div class="form-group">
         <label>Empresa</label>
-        <input type="text" />
+        <input type="text" [(ngModel)]="empresa" name="empresa" />
       </div>
 
       <div class="form-group">
         <label class="required">Telefone</label>
-        <input type="tel" required />
+        <input type="tel" [(ngModel)]="telefone" name="telefone" required />
       </div>
 
       <div class="form-group">
-        <label class="required">Email</label>
-        <input type="email" required />
+        <label>CC</label>
+        <input type="email" [(ngModel)]="email" name="email"/>
       </div>
 
       <div class="form-group" style="grid-column: span 2">
-        <label class="required" >Mensagem</label>
-        <textarea required [(value)]="mensagem"></textarea>
+        <label class="required">Mensagem</label>
+        <textarea required [(ngModel)]="mensagem" name="mensagem"></textarea>
       </div>
 
-      <button type="submit" class="submit-button">Enviar</button>
+      <button type="button" class="submit-button" (click)="enviarEmail()">
+        Enviar
+      </button>
     </form>
   </div>
 </div>
