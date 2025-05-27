@@ -1,8 +1,20 @@
-#QuemSomos{
-    display: flex;
+#QuemSomos {
+  display: flex;
 }
 
-#imagemTrabalho{
-    margin-left: 2vw;
-    width: 25vw;
+#imagemTrabalho {
+  margin-left: 2vw;
+  width: 25vw;
+}
+
+@media (max-width: 768px) {
+  #QuemSomos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #imagemTrabalho {
+    width: 25vh;
+  }
 }

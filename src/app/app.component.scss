@@ -11,7 +11,7 @@ header {
   background-color: transparent;
   transition: background-color 0.3s ease;
   padding: 0.3vh 0.3vw;
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   top: 0;
@@ -102,4 +102,31 @@ header nav a {
 #whatsapp a img {
   height: 100%;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  #section-wallpaper {
+    background-size: cover;
+    height: 55vh;
+  }
+
+  header {
+    padding: 1vh 1vw;
+  }
+
+  #inicio .inicioItens {
+    color: white;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 25px;
+  }
+
+  header a img {
+    width: 200px;
+  }
+
+  #Menu {
+    color: white;
+  }
 }
