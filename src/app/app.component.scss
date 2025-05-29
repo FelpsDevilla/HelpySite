@@ -10,13 +10,17 @@ header {
   position: fixed;
   background-color: transparent;
   transition: background-color 0.3s ease;
-  padding: 0.3vh 0.3vw;
+  padding: 1vh 0.3vw;
   width: 100vw;
   display: flex;
   align-items: center;
   top: 0;
   left: 0;
   z-index: 1000;
+}
+
+#inicioLogo{
+  margin-left: 15px;
 }
 
 header.scrolled {
@@ -122,8 +126,8 @@ header nav a {
     font-size: 5vw;
   }
 
-  header a img {
-    width: 200px;
+  #inicioLogo {
+    width: 20vw;
   }
 
   #Menu {
