@@ -8,6 +8,7 @@
       name="description"
       content="Infraestrutura de TI, redes, segurança eletrônica, automação de acessos e manutenção técnica para empresas e operações que não podem parar."
     />
+    <link rel="icon" href="assets/favicon.ico" />
     <style>
       :root {
         --coral: #fa0644;
@@ -57,20 +58,13 @@
         justify-content: space-between;
       }
       .logo {
-        font-weight: 900;
-        letter-spacing: 0.04em;
-        color: #fff;
-        font-size: 22px;
+        display: inline-flex;
+        align-items: center;
       }
-      .logo span {
-        color: var(--coral);
-      }
-      .logo small {
+      .logo img {
         display: block;
-        font-size: 9px;
-        letter-spacing: 0.22em;
-        color: #bbb;
-        margin-top: -2px;
+        height: 44px;
+        width: auto;
       }
       .menu {
         display: flex;
@@ -618,6 +612,10 @@
         margin: 9px 0;
         font-size: 13px;
       }
+      .footer a.logo {
+        display: inline-flex;
+        margin: 0 0 16px;
+      }
       .footer-bottom {
         border-top: 1px solid #2a2a2a;
         margin-top: 35px;
@@ -632,13 +630,23 @@
         right: 18px;
         bottom: 18px;
         z-index: 60;
-        background: #20c56a;
-        color: #fff;
-        padding: 15px 18px;
-        border-radius: 50px;
-        font-weight: 900;
-        font-size: 12px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 62px;
+        height: 62px;
+        background: #25d366;
+        border-radius: 50%;
+        transition: transform 0.2s;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+      .whatsapp:hover {
+        transform: scale(1.08);
+      }
+      .whatsapp img {
+        width: 90%;
+        height: 90%;
+        display: block;
       }
       @media (max-width: 900px) {
         .menu,
@@ -671,6 +679,9 @@
       @media (max-width: 600px) {
         .container {
           width: min(var(--max), calc(100% - 28px));
+        }
+        .logo img {
+          height: 38px;
         }
         .hero {
           min-height: 700px;
@@ -729,9 +740,12 @@
   <body>
     <header class="header">
       <div class="container nav">
-        <a class="logo" href="#"
-          >HELPY <span>SERVICE</span><small>TECNOLOGIAS INTEGRADAS</small></a
-        >
+        <a class="logo" href="#inicio" aria-label="Helpy Service - Início">
+          <img
+            src="assets/logo.png"
+            alt="Helpy Service - Tecnologias Integradas"
+          />
+        </a>
         <nav class="menu">
           <a href="#inicio">Início</a>
           <a href="#empresa">A HELPY</a>
@@ -740,8 +754,10 @@
           <a href="#projetos">Projetos</a>
           <a href="#contato">Contato</a>
         </nav>
-        <a class="btn btn-primary" href="#contato">AREA DO CLIENTE</a>
         <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
+        <a class="btn btn-primary" href="https://software.leankeep.com/login"
+          >AREA DO CLIENTE</a
+        >
       </div>
     </header>
 
@@ -1180,10 +1196,12 @@
       <div class="container">
         <div class="footer-grid">
           <div>
-            <a class="logo" href="#"
-              >HELPY <span>SERVICE</span
-              ><small>TECNOLOGIAS INTEGRADAS</small></a
-            >
+            <a class="logo" href="#inicio" aria-label="Helpy Service - Início">
+              <img
+                src="assets/logo.png"
+                alt="Helpy Service - Tecnologias Integradas"
+              />
+            </a>
             <p style="max-width: 360px">
               Infraestrutura, segurança, automação e manutenção para operações
               que não podem parar.
@@ -1209,8 +1227,14 @@
       </div>
     </footer>
 
-    <a class="whatsapp" href="https://wa.me/555399042226" target="_blank"
-      >WHATSAPP</a
+    <a
+      class="whatsapp"
+      href="https://wa.me/555399042226"
+      target="_blank"
+      rel="noopener"
+      aria-label="Falar pelo WhatsApp"
     >
+      <img src="assets/logo-whatsapp.svg" alt="WhatsApp" />
+    </a>
   </body>
 </html>
