@@ -1,0 +1,1216 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HELPY SERVICE — Tecnologias Integradas</title>
+    <meta
+      name="description"
+      content="Infraestrutura de TI, redes, segurança eletrônica, automação de acessos e manutenção técnica para empresas e operações que não podem parar."
+    />
+    <style>
+      :root {
+        --coral: #fa0644;
+        --graphite: #494949;
+        --dark: #151515;
+        --light: #f4f4f2;
+        --white: #fff;
+        --muted: #727272;
+        --line: #e4e4e4;
+        --max: 1180px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, Montserrat, Arial, sans-serif;
+        color: var(--dark);
+        background: #fff;
+        line-height: 1.55;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .container {
+        width: min(var(--max), calc(100% - 40px));
+        margin: auto;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: rgba(20, 20, 20, 0.9);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .nav {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: #fff;
+        font-size: 22px;
+      }
+      .logo span {
+        color: var(--coral);
+      }
+      .logo small {
+        display: block;
+        font-size: 9px;
+        letter-spacing: 0.22em;
+        color: #bbb;
+        margin-top: -2px;
+      }
+      .menu {
+        display: flex;
+        gap: 28px;
+        color: #ddd;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .menu a:hover {
+        color: #fff;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 22px;
+        border-radius: 3px;
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        border: 1px solid transparent;
+        transition: 0.2s;
+      }
+      .btn-primary {
+        background: var(--coral);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.06);
+      }
+      .btn-outline {
+        border-color: rgba(255, 255, 255, 0.45);
+        color: #fff;
+      }
+      .btn-dark {
+        background: var(--dark);
+        color: #fff;
+      }
+      .hero {
+        min-height: 760px;
+        padding-top: 78px;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(10, 10, 10, 0.92) 0%,
+            rgba(10, 10, 10, 0.74) 47%,
+            rgba(10, 10, 10, 0.25) 100%
+          ),
+          radial-gradient(
+            circle at 75% 35%,
+            rgba(250, 6, 68, 0.35),
+            transparent 25%
+          ),
+          linear-gradient(135deg, #252525 0%, #080808 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero:after {
+        content: "";
+        position: absolute;
+        right: -160px;
+        bottom: -220px;
+        width: 650px;
+        height: 650px;
+        border: 1px solid rgba(250, 6, 68, 0.28);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 90px rgba(250, 6, 68, 0.03),
+          0 0 0 180px rgba(250, 6, 68, 0.025);
+      }
+      .eyebrow {
+        color: #ff527c;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-size: clamp(42px, 6vw, 76px);
+        line-height: 0.98;
+        max-width: 850px;
+        margin: 0 0 24px;
+        font-weight: 900;
+        letter-spacing: -0.045em;
+      }
+      .hero h1 span {
+        color: var(--coral);
+      }
+      .hero p {
+        font-size: 19px;
+        max-width: 680px;
+        color: #ddd;
+        margin: 0 0 32px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .hero-meta {
+        margin-top: 48px;
+        display: flex;
+        gap: 34px;
+        flex-wrap: wrap;
+        color: #aaa;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .hero-meta b {
+        display: block;
+        color: #fff;
+        font-size: 13px;
+        margin-bottom: 3px;
+      }
+      .strip {
+        background: var(--coral);
+        color: #fff;
+      }
+      .strip-inner {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .strip strong {
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+      .strip-items {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+      .section {
+        padding: 100px 0;
+      }
+      .section-light {
+        background: var(--light);
+      }
+      .section-dark {
+        background: var(--dark);
+        color: #fff;
+      }
+      .section-kicker {
+        font-size: 11px;
+        color: var(--coral);
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: clamp(32px, 4vw, 54px);
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+        margin: 12px 0 20px;
+      }
+      .lead {
+        font-size: 18px;
+        color: var(--muted);
+        max-width: 760px;
+      }
+      .section-dark .lead {
+        color: #c7c7c7;
+      }
+      .intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        align-items: center;
+      }
+      .visual-stack {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 12px;
+        min-height: 450px;
+      }
+      .visual {
+        border-radius: 8px;
+        background: linear-gradient(145deg, #5b5b5b, #1d1d1d);
+        position: relative;
+        overflow: hidden;
+      }
+      .visual:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          transparent 45%,
+          rgba(250, 6, 68, 0.35) 45.5%,
+          transparent 48%
+        );
+      }
+      .visual.tall {
+        min-height: 450px;
+      }
+      .visual.small {
+        margin-top: 60px;
+        min-height: 330px;
+      }
+      .visual-label {
+        position: absolute;
+        bottom: 18px;
+        left: 18px;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .checks {
+        display: grid;
+        gap: 12px;
+        margin: 30px 0;
+      }
+      .check {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-weight: 800;
+      }
+      .check i {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--coral);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-style: normal;
+        font-size: 12px;
+        flex: none;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 42px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        padding: 30px;
+        border-radius: 7px;
+        background: #fff;
+        min-height: 310px;
+        display: flex;
+        flex-direction: column;
+        transition: 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+        border-color: #ccc;
+      }
+      .card-num {
+        font-size: 12px;
+        color: var(--coral);
+        font-weight: 900;
+      }
+      .card h3 {
+        font-size: 22px;
+        line-height: 1.05;
+        margin: 28px 0 12px;
+      }
+      .card p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .card ul {
+        padding-left: 18px;
+        color: #555;
+        font-size: 13px;
+        line-height: 1.9;
+      }
+      .card .link {
+        margin-top: auto;
+        color: var(--coral);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+      }
+      .problem {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 70px;
+        align-items: center;
+      }
+      .big-statement {
+        font-size: clamp(44px, 6vw, 76px);
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        margin: 0;
+      }
+      .big-statement span {
+        color: var(--coral);
+      }
+      .process {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin-top: 50px;
+      }
+      .step {
+        padding: 26px;
+        border-top: 2px solid var(--coral);
+        border-right: 1px solid #ddd;
+      }
+      .step:last-child {
+        border-right: 0;
+      }
+      .step b {
+        font-size: 12px;
+        color: var(--coral);
+      }
+      .step h3 {
+        margin: 12px 0 8px;
+      }
+      .step p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .plans {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        margin-top: 38px;
+      }
+      .plan {
+        padding: 30px;
+        border-radius: 7px;
+        background: #fff;
+        border: 1px solid var(--line);
+      }
+      .plan h3 {
+        margin-top: 0;
+      }
+      .plan ul {
+        padding-left: 18px;
+        color: #555;
+        line-height: 2;
+      }
+      .segment-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 42px;
+      }
+      .segment {
+        min-height: 180px;
+        border-radius: 7px;
+        padding: 26px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background: linear-gradient(145deg, #555, #181818);
+      }
+      .segment b {
+        font-size: 18px;
+      }
+      .segment span {
+        font-size: 12px;
+        color: #ddd;
+        margin-top: 5px;
+      }
+      .cases {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 42px;
+      }
+      .case {
+        min-height: 330px;
+        border-radius: 7px;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(145deg, #626262, #151515);
+        color: #fff;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .case:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(transparent 35%, rgba(0, 0, 0, 0.82));
+      }
+      .case > * {
+        position: relative;
+        z-index: 1;
+      }
+      .case small {
+        color: #ff5b82;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+      }
+      .case h3 {
+        font-size: 24px;
+        margin: 7px 0;
+      }
+      .case p {
+        font-size: 13px;
+        color: #ddd;
+        margin: 0;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 42px;
+      }
+      .why {
+        padding: 28px;
+        border: 1px solid #333;
+        border-radius: 7px;
+        background: #1d1d1d;
+      }
+      .why b {
+        font-size: 16px;
+      }
+      .why p {
+        color: #bbb;
+        font-size: 13px;
+      }
+      .cta {
+        padding: 90px 0;
+        background: linear-gradient(90deg, #151515, #303030);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+      .cta h2 {
+        max-width: 720px;
+      }
+      .form-section {
+        background: var(--light);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: 60px;
+        align-items: start;
+      }
+      .contact-info {
+        background: var(--dark);
+        color: #fff;
+        padding: 36px;
+        border-radius: 8px;
+      }
+      .contact-info h3 {
+        font-size: 28px;
+        margin-top: 0;
+      }
+      .contact-info p {
+        color: #bbb;
+        font-size: 14px;
+      }
+      .contact-info .item {
+        padding: 17px 0;
+        border-top: 1px solid #333;
+      }
+      .contact-info b {
+        display: block;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .form {
+        background: #fff;
+        padding: 35px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .field.full {
+        grid-column: 1/-1;
+      }
+      .field label {
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+      }
+      .field input,
+      .field textarea,
+      .field select {
+        border: 1px solid #ddd;
+        padding: 14px;
+        border-radius: 4px;
+        font: inherit;
+        outline: none;
+      }
+      .field textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+      .form .btn {
+        border: 0;
+        cursor: pointer;
+      }
+      .footer {
+        background: #111;
+        color: #aaa;
+        padding: 55px 0 25px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 40px;
+      }
+      .footer h4 {
+        color: #fff;
+        margin-top: 0;
+      }
+      .footer a {
+        display: block;
+        margin: 9px 0;
+        font-size: 13px;
+      }
+      .footer-bottom {
+        border-top: 1px solid #2a2a2a;
+        margin-top: 35px;
+        padding-top: 20px;
+        font-size: 11px;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .whatsapp {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 60;
+        background: #20c56a;
+        color: #fff;
+        padding: 15px 18px;
+        border-radius: 50px;
+        font-weight: 900;
+        font-size: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      }
+      @media (max-width: 900px) {
+        .menu,
+        .header .btn {
+          display: none;
+        }
+        .intro,
+        .problem,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .process {
+          grid-template-columns: 1fr 1fr;
+        }
+        .segment-grid,
+        .cases,
+        .why-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cta .container {
+          display: block;
+        }
+        .cta .btn {
+          margin-top: 15px;
+        }
+      }
+      @media (max-width: 600px) {
+        .container {
+          width: min(var(--max), calc(100% - 28px));
+        }
+        .hero {
+          min-height: 700px;
+        }
+        .hero h1 {
+          font-size: 43px;
+        }
+        .hero p {
+          font-size: 16px;
+        }
+        .strip-inner {
+          padding: 20px 0;
+        }
+        .strip-items {
+          gap: 12px;
+        }
+        .section {
+          padding: 70px 0;
+        }
+        .services-grid,
+        .process,
+        .segment-grid,
+        .cases,
+        .why-grid,
+        .plans,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .visual-stack {
+          grid-template-columns: 1fr 1fr;
+          min-height: 320px;
+        }
+        .visual.tall {
+          min-height: 320px;
+        }
+        .visual.small {
+          min-height: 240px;
+          margin-top: 35px;
+        }
+        .form {
+          grid-template-columns: 1fr;
+        }
+        .field.full {
+          grid-column: auto;
+        }
+        .footer-bottom {
+          display: block;
+        }
+        .footer-bottom span {
+          display: block;
+          margin-top: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <a class="logo" href="#"
+          >HELPY <span>SERVICE</span><small>TECNOLOGIAS INTEGRADAS</small></a
+        >
+        <nav class="menu">
+          <a href="#inicio">Início</a>
+          <a href="#empresa">A HELPY</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#manutencao">Manutenção</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a class="btn btn-primary" href="#contato">AREA DO CLIENTE</a>
+        <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container">
+          <div class="eyebrow">Tecnologias integradas • Rio Grande/RS</div>
+          <h1>TECNOLOGIA QUE MANTÉM SUA <span>OPERAÇÃO EM MOVIMENTO.</span></h1>
+          <p>
+            Infraestrutura de TI, redes, segurança eletrônica, automação de
+            acessos e manutenção técnica para empresas e operações que não podem
+            parar.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
+            <a class="btn btn-outline" href="#servicos">CONHECER SERVIÇOS</a>
+          </div>
+          <div class="hero-meta">
+            <div><b>REDES</b>Infraestrutura & conectividade</div>
+            <div><b>SEGURANÇA</b>CFTV & controle de acesso</div>
+            <div><b>AUTOMAÇÃO</b>Cancelas & acessos</div>
+            <div><b>MANUTENÇÃO</b>Preventiva & corretiva</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="strip">
+        <div class="container strip-inner">
+          <strong>SOLUÇÕES PARA SUA OPERAÇÃO</strong>
+          <div class="strip-items">
+            <span>REDES</span><span>FIBRA ÓPTICA</span><span>CFTV</span
+            ><span>CONTROLE DE ACESSO</span><span>AUTOMAÇÃO</span
+            ><span>MANUTENÇÃO</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="empresa">
+        <div class="container intro">
+          <div>
+            <div class="section-kicker">O que fazemos</div>
+            <h2>Infraestrutura tecnológica para operações reais.</h2>
+            <p class="lead">
+              A HELPY SERVICE desenvolve, instala e mantém soluções para
+              ambientes corporativos, industriais e operacionais.
+            </p>
+            <p>
+              Combinamos infraestrutura, segurança eletrônica, automação e
+              manutenção técnica para reduzir indisponibilidades e manter os
+              sistemas essenciais funcionando.
+            </p>
+            <div class="checks">
+              <div class="check">
+                <i>✓</i><span>Diagnóstico e solução técnica</span>
+              </div>
+              <div class="check">
+                <i>✓</i><span>Projetos personalizados</span>
+              </div>
+              <div class="check">
+                <i>✓</i><span>Manutenção preventiva e corretiva</span>
+              </div>
+            </div>
+          </div>
+          <div class="visual-stack">
+            <div class="visual tall">
+              <span class="visual-label">Infraestrutura & racks</span>
+            </div>
+            <div class="visual small">
+              <span class="visual-label">Automação & acesso</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-light" id="servicos">
+        <div class="container">
+          <div class="section-kicker">Especialidades</div>
+          <h2>Soluções que conectam,<br />protegem e mantêm.</h2>
+          <p class="lead">
+            Da infraestrutura ao equipamento final, a HELPY integra tecnologia,
+            manutenção e suporte técnico.
+          </p>
+          <div class="services-grid">
+            <article class="card">
+              <div class="card-num">01 / REDES</div>
+              <h3>REDES & INFRAESTRUTURA</h3>
+              <p>
+                Infraestrutura de comunicação para ambientes corporativos e
+                industriais.
+              </p>
+              <ul>
+                <li>Cabeamento estruturado</li>
+                <li>Fibra óptica</li>
+                <li>Racks e patch panels</li>
+                <li>Wi-Fi e links</li>
+              </ul>
+              <a class="link" href="#contato">SAIBA MAIS →</a>
+            </article>
+            <article class="card">
+              <div class="card-num">02 / SEGURANÇA</div>
+              <h3>SEGURANÇA ELETRÔNICA</h3>
+              <p>
+                Monitoramento, proteção e controle das áreas da sua empresa.
+              </p>
+              <ul>
+                <li>CFTV</li>
+                <li>Câmeras IP</li>
+                <li>Controle de acesso</li>
+                <li>Infraestrutura</li>
+              </ul>
+              <a class="link" href="#contato">SAIBA MAIS →</a>
+            </article>
+            <article class="card">
+              <div class="card-num">03 / AUTOMAÇÃO</div>
+              <h3>AUTOMAÇÃO DE ACESSOS</h3>
+              <p>Equipamentos para controlar o fluxo de pessoas e veículos.</p>
+              <ul>
+                <li>Cancelas</li>
+                <li>Portões</li>
+                <li>Torniquetes</li>
+                <li>Catracas e sensores</li>
+              </ul>
+              <a class="link" href="#contato">SAIBA MAIS →</a>
+            </article>
+            <article class="card">
+              <div class="card-num">04 / MANUTENÇÃO</div>
+              <h3>MANUTENÇÃO TÉCNICA</h3>
+              <p>Prevenção, correção e acompanhamento para reduzir paradas.</p>
+              <ul>
+                <li>Preventiva</li>
+                <li>Corretiva</li>
+                <li>Diagnóstico</li>
+                <li>Relatórios técnicos</li>
+              </ul>
+              <a class="link" href="#contato">SOLICITAR ATENDIMENTO →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="manutencao">
+        <div class="container problem">
+          <div>
+            <div class="section-kicker">Manutenção</div>
+            <p class="big-statement">
+              SUA OPERAÇÃO <span>NÃO PODE PARAR.</span>
+            </p>
+          </div>
+          <div>
+            <p class="lead">
+              Uma falha em rede, câmera, cancela, portão ou sistema de acesso
+              pode afetar toda a operação.
+            </p>
+            <p>
+              É aí que entra a HELPY: identificação, correção e prevenção de
+              falhas, com visão integrada de infraestrutura e equipamentos.
+            </p>
+            <a class="btn btn-primary" href="#contato">FALAR COM A HELPY</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-light">
+        <div class="container">
+          <div class="section-kicker">Contratos</div>
+          <h2>Manutenção contínua para empresas que não podem parar.</h2>
+          <p class="lead">
+            Tenha acompanhamento técnico contínuo para sua infraestrutura e seus
+            equipamentos.
+          </p>
+          <div class="plans">
+            <div class="plan">
+              <h3>MANUTENÇÃO PREVENTIVA</h3>
+              <p>
+                Rotinas programadas para identificar desgastes e falhas antes
+                que afetem a operação.
+              </p>
+              <ul>
+                <li>Inspeções técnicas</li>
+                <li>Checklist de equipamentos</li>
+                <li>Recomendações de correção</li>
+                <li>Histórico de manutenção</li>
+              </ul>
+            </div>
+            <div class="plan">
+              <h3>MANUTENÇÃO CORRETIVA</h3>
+              <p>
+                Atendimento técnico para diagnóstico e recuperação de
+                equipamentos e infraestrutura.
+              </p>
+              <ul>
+                <li>Diagnóstico de falhas</li>
+                <li>Reparo e substituição</li>
+                <li>Testes operacionais</li>
+                <li>Relatório técnico</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top: 24px">
+            <a class="btn btn-dark" href="#contato"
+              >QUERO UM CONTRATO DE MANUTENÇÃO</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-kicker">Segmentos</div>
+          <h2>Tecnologia para diferentes operações.</h2>
+          <div class="segment-grid">
+            <div class="segment">
+              <b>INDÚSTRIAS</b
+              ><span>Infraestrutura, redes, segurança e automação.</span>
+            </div>
+            <div class="segment">
+              <b>TERMINAIS PORTUÁRIOS</b
+              ><span
+                >Infraestrutura e manutenção em ambientes operacionais.</span
+              >
+            </div>
+            <div class="segment">
+              <b>LOGÍSTICA</b
+              ><span>Controle de acessos, CFTV e conectividade.</span>
+            </div>
+            <div class="segment">
+              <b>EMPRESAS</b
+              ><span>Redes, segurança eletrônica e manutenção.</span>
+            </div>
+            <div class="segment">
+              <b>CENTROS COMERCIAIS</b
+              ><span>Controle de acesso, CFTV e infraestrutura.</span>
+            </div>
+            <div class="segment">
+              <b>CONDOMÍNIOS</b><span>Segurança, acesso e automação.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-light" id="projetos">
+        <div class="container">
+          <div class="section-kicker">Projetos & cases</div>
+          <h2>Projetos que colocam a tecnologia em operação.</h2>
+          <p class="lead">
+            Nesta área, substituir os blocos abaixo por fotografias reais dos
+            trabalhos da HELPY.
+          </p>
+          <div class="cases">
+            <article class="case">
+              <small>01 / INFRAESTRUTURA</small>
+              <h3>Redes & Fibra Óptica</h3>
+              <p>
+                Implantação, organização e manutenção de infraestrutura de
+                comunicação.
+              </p>
+            </article>
+            <article class="case">
+              <small>02 / SEGURANÇA</small>
+              <h3>CFTV & Controle de Acesso</h3>
+              <p>Infraestrutura, manutenção e integração de sistemas.</p>
+            </article>
+            <article class="case">
+              <small>03 / AUTOMAÇÃO</small>
+              <h3>Cancelas & Portões</h3>
+              <p>Manutenção e recuperação de sistemas de controle de acesso.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-kicker">Nosso método</div>
+          <h2>Do problema à solução.</h2>
+          <div class="process">
+            <div class="step">
+              <b>01</b>
+              <h3>DIAGNÓSTICO</h3>
+              <p>Entendemos a demanda e avaliamos a infraestrutura.</p>
+            </div>
+            <div class="step">
+              <b>02</b>
+              <h3>PLANEJAMENTO</h3>
+              <p>Definimos a solução técnica e os materiais necessários.</p>
+            </div>
+            <div class="step">
+              <b>03</b>
+              <h3>EXECUÇÃO</h3>
+              <p>Nossa equipe realiza a intervenção planejada.</p>
+            </div>
+            <div class="step">
+              <b>04</b>
+              <h3>ACOMPANHAMENTO</h3>
+              <p>Documentamos o serviço e indicamos ações preventivas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark">
+        <div class="container">
+          <div class="section-kicker">Por que a HELPY?</div>
+          <h2>Uma equipe. Várias especialidades.</h2>
+          <div class="why-grid">
+            <div class="why">
+              <b>EXPERIÊNCIA TÉCNICA</b>
+              <p>
+                Conhecimento aplicado em infraestrutura e sistemas tecnológicos.
+              </p>
+            </div>
+            <div class="why">
+              <b>VISÃO INTEGRADA</b>
+              <p>
+                Redes, segurança, automação e manutenção trabalhando em
+                conjunto.
+              </p>
+            </div>
+            <div class="why">
+              <b>AGILIDADE</b>
+              <p>Atendimento direcionado para minimizar indisponibilidades.</p>
+            </div>
+            <div class="why">
+              <b>TRANSPARÊNCIA</b>
+              <p>Diagnóstico e execução documentados.</p>
+            </div>
+            <div class="why">
+              <b>MANUTENÇÃO</b>
+              <p>Prevenção para reduzir falhas e prolongar a vida útil.</p>
+            </div>
+            <div class="why">
+              <b>SOLUÇÕES PERSONALIZADAS</b>
+              <p>Projetos desenvolvidos de acordo com cada operação.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sobre">
+        <div class="container intro">
+          <div class="visual tall">
+            <span class="visual-label"
+              >HELPY SERVICE • TECNOLOGIAS INTEGRADAS</span
+            >
+          </div>
+          <div>
+            <div class="section-kicker">Sobre a HELPY</div>
+            <h2>Tecnologia integrada para empresas.</h2>
+            <p class="lead">
+              Desenvolvemos soluções integradas e projetos corporativos
+              customizados de tecnologia da informação.
+            </p>
+            <p>
+              Nossa atuação combina infraestrutura, segurança eletrônica,
+              automação e manutenção técnica para entregar soluções adequadas à
+              realidade de cada cliente.
+            </p>
+            <a class="btn btn-dark" href="#contato">CONHEÇA A HELPY</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container">
+          <div>
+            <div class="section-kicker">Fale com a equipe</div>
+            <h2>Precisa resolver um problema ou planejar um projeto?</h2>
+            <p class="lead" style="color: #bbb">
+              Conte o que sua empresa precisa. A HELPY avalia a demanda e indica
+              o caminho técnico adequado.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
+        </div>
+      </section>
+
+      <section class="section form-section" id="contato">
+        <div class="container contact-grid">
+          <div class="contact-info">
+            <div class="section-kicker">Contato</div>
+            <h3>Vamos conversar sobre sua operação?</h3>
+            <p>Envie sua necessidade e nossa equipe entrará em contato.</p>
+            <div class="item"><b>HELPY SERVICE</b>F. M. KROTH LTDA.</div>
+            <div class="item"><b>Localização</b>Rio Grande — RS</div>
+            <div class="item"><b>Comercial</b>+55 53 9904-2226</div>
+            <div class="item"><b>E-mail</b>contato@helpyservice.com.br</div>
+          </div>
+          <form class="form">
+            <div class="field">
+              <label>NOME</label><input type="text" placeholder="Seu nome" />
+            </div>
+            <div class="field">
+              <label>EMPRESA</label
+              ><input type="text" placeholder="Nome da empresa" />
+            </div>
+            <div class="field">
+              <label>TELEFONE / WHATSAPP</label
+              ><input type="tel" placeholder="(00) 00000-0000" />
+            </div>
+            <div class="field">
+              <label>E-MAIL</label
+              ><input type="email" placeholder="seu@email.com" />
+            </div>
+            <div class="field full">
+              <label>TIPO DE SERVIÇO</label
+              ><select>
+                <option>Selecione</option>
+                <option>Redes / Infraestrutura</option>
+                <option>Fibra Óptica</option>
+                <option>CFTV</option>
+                <option>Controle de Acesso</option>
+                <option>Cancela / Portão</option>
+                <option>Torniquete / Catraca</option>
+                <option>Manutenção</option>
+                <option>Projeto</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label>DESCREVA SUA NECESSIDADE</label
+              ><textarea
+                placeholder="Conte brevemente o que sua empresa precisa."
+              ></textarea>
+            </div>
+            <div class="field full">
+              <button class="btn btn-primary" type="button">
+                ENVIAR SOLICITAÇÃO
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a class="logo" href="#"
+              >HELPY <span>SERVICE</span
+              ><small>TECNOLOGIAS INTEGRADAS</small></a
+            >
+            <p style="max-width: 360px">
+              Infraestrutura, segurança, automação e manutenção para operações
+              que não podem parar.
+            </p>
+          </div>
+          <div>
+            <h4>SERVIÇOS</h4>
+            <a href="#servicos">Redes & Infraestrutura</a
+            ><a href="#servicos">Segurança Eletrônica</a
+            ><a href="#servicos">Automação de Acessos</a
+            ><a href="#manutencao">Manutenção Técnica</a>
+          </div>
+          <div>
+            <h4>NAVEGAÇÃO</h4>
+            <a href="#inicio">Início</a><a href="#projetos">Projetos</a
+            ><a href="#empresa">A HELPY</a><a href="#contato">Contato</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 HELPY SERVICE — F. M. KROTH LTDA.</span
+          ><span>Todos os direitos reservados.</span>
+        </div>
+      </div>
+    </footer>
+
+    <a class="whatsapp" href="https://wa.me/555399042226" target="_blank"
+      >WHATSAPP</a
+    >
+  </body>
+</html>
