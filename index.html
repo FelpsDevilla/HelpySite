@@ -648,6 +648,53 @@
         height: 90%;
         display: block;
       }
+      /* Imagens */
+      .visual > img,
+      .segment > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      .visual:before {
+        z-index: 1;
+      }
+      .visual:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(transparent 55%, rgba(0, 0, 0, 0.72));
+      }
+      .visual-label {
+        z-index: 2;
+      }
+      .segment {
+        position: relative;
+        overflow: hidden;
+      }
+      .segment:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.85));
+      }
+      .segment > b,
+      .segment > span {
+        position: relative;
+        z-index: 2;
+      }
+      .case > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
       @media (max-width: 900px) {
         .menu,
         .header .btn {
@@ -734,6 +781,10 @@
           display: block;
           margin-top: 8px;
         }
+        .whatsapp {
+          width: 56px;
+          height: 56px;
+        }
       }
     </style>
   </head>
@@ -755,9 +806,7 @@
           <a href="#contato">Contato</a>
         </nav>
         <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
-        <a class="btn btn-primary" href="https://software.leankeep.com/login"
-          >AREA DO CLIENTE</a
-        >
+        <a class="btn btn-primary" href="https://software.leankeep.com/login">AREA DO CLIENTE</a>
       </div>
     </header>
 
@@ -823,9 +872,19 @@
           </div>
           <div class="visual-stack">
             <div class="visual tall">
+              <img
+                src="assets/secao_oque_fazemos_infraestrutura_e_racks.jpg"
+                alt="Infraestrutura de rede e racks"
+                loading="lazy"
+              />
               <span class="visual-label">Infraestrutura & racks</span>
             </div>
             <div class="visual small">
+              <img
+                src="assets/secao_oque_fazemos_automacao_de_acesso.jpg"
+                alt="Automação de acesso"
+                loading="lazy"
+              />
               <span class="visual-label">Automação & acesso</span>
             </div>
           </div>
@@ -970,28 +1029,34 @@
           <h2>Tecnologia para diferentes operações.</h2>
           <div class="segment-grid">
             <div class="segment">
+              <img src="assets/segmentos_industrias.png" alt="Indústrias" loading="lazy" />
               <b>INDÚSTRIAS</b
               ><span>Infraestrutura, redes, segurança e automação.</span>
             </div>
             <div class="segment">
+              <img src="assets/segmentos_terminais_portuarios.png" alt="Terminais portuários" loading="lazy" />
               <b>TERMINAIS PORTUÁRIOS</b
               ><span
                 >Infraestrutura e manutenção em ambientes operacionais.</span
               >
             </div>
             <div class="segment">
+              <img src="assets/segmentos_logistica.png" alt="Logística" loading="lazy" />
               <b>LOGÍSTICA</b
               ><span>Controle de acessos, CFTV e conectividade.</span>
             </div>
             <div class="segment">
+              <img src="assets/segmentos_empresas.png" alt="Empresas" loading="lazy" />
               <b>EMPRESAS</b
               ><span>Redes, segurança eletrônica e manutenção.</span>
             </div>
             <div class="segment">
+              <img src="assets/segmentos_centro_comerciais.png" alt="Centros comerciais" loading="lazy" />
               <b>CENTROS COMERCIAIS</b
               ><span>Controle de acesso, CFTV e infraestrutura.</span>
             </div>
             <div class="segment">
+              <img src="assets/segmentos_condominio.png" alt="Condomínios" loading="lazy" />
               <b>CONDOMÍNIOS</b><span>Segurança, acesso e automação.</span>
             </div>
           </div>
@@ -1003,11 +1068,12 @@
           <div class="section-kicker">Projetos & cases</div>
           <h2>Projetos que colocam a tecnologia em operação.</h2>
           <p class="lead">
-            Nesta área, substituir os blocos abaixo por fotografias reais dos
-            trabalhos da HELPY.
+            Soluções aplicadas em ambientes corporativos, industriais e
+            operacionais.
           </p>
           <div class="cases">
             <article class="case">
+              <img src="assets/cases_redes_e_fibra_optica.jpg" alt="Redes e fibra óptica" loading="lazy" />
               <small>01 / INFRAESTRUTURA</small>
               <h3>Redes & Fibra Óptica</h3>
               <p>
@@ -1016,11 +1082,13 @@
               </p>
             </article>
             <article class="case">
+              <img src="assets/cases_cftv_e_controle_de_acesso.jpg" alt="CFTV e controle de acesso" loading="lazy" />
               <small>02 / SEGURANÇA</small>
               <h3>CFTV & Controle de Acesso</h3>
               <p>Infraestrutura, manutenção e integração de sistemas.</p>
             </article>
             <article class="case">
+              <img src="assets/cases_cancelar_e_portoes.jpg" alt="Cancelas e portões" loading="lazy" />
               <small>03 / AUTOMAÇÃO</small>
               <h3>Cancelas & Portões</h3>
               <p>Manutenção e recuperação de sistemas de controle de acesso.</p>
@@ -1099,6 +1167,11 @@
       <section class="section" id="sobre">
         <div class="container intro">
           <div class="visual tall">
+            <img
+              src="assets/secao_sobre_a_helpy.jpg"
+              alt="Equipe técnica da Helpy Service"
+              loading="lazy"
+            />
             <span class="visual-label"
               >HELPY SERVICE • TECNOLOGIAS INTEGRADAS</span
             >
