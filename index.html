@@ -1218,26 +1218,27 @@
             <div class="item"><b>Comercial</b>+55 53 9904-2226</div>
             <div class="item"><b>E-mail</b>contato@helpyservice.com.br</div>
           </div>
-          <form class="form">
+          <form class="form" id="form-contato">
             <div class="field">
-              <label>NOME</label><input type="text" placeholder="Seu nome" />
+              <label for="nome">NOME</label
+              ><input id="nome" name="nome" type="text" placeholder="Seu nome" required />
             </div>
             <div class="field">
-              <label>EMPRESA</label
-              ><input type="text" placeholder="Nome da empresa" />
+              <label for="empresa">EMPRESA</label
+              ><input id="empresa" name="empresa" type="text" placeholder="Nome da empresa" />
             </div>
             <div class="field">
-              <label>TELEFONE / WHATSAPP</label
-              ><input type="tel" placeholder="(00) 00000-0000" />
+              <label for="telefone">TELEFONE / WHATSAPP</label
+              ><input id="telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" required />
             </div>
             <div class="field">
-              <label>E-MAIL</label
-              ><input type="email" placeholder="seu@email.com" />
+              <label for="email">E-MAIL</label
+              ><input id="email" name="email" type="email" placeholder="seu@email.com" />
             </div>
             <div class="field full">
-              <label>TIPO DE SERVIÇO</label
-              ><select>
-                <option>Selecione</option>
+              <label for="servico">TIPO DE SERVIÇO</label
+              ><select id="servico" name="servico">
+                <option value="">Selecione</option>
                 <option>Redes / Infraestrutura</option>
                 <option>Fibra Óptica</option>
                 <option>CFTV</option>
@@ -1250,13 +1251,15 @@
               </select>
             </div>
             <div class="field full">
-              <label>DESCREVA SUA NECESSIDADE</label
+              <label for="mensagem">DESCREVA SUA NECESSIDADE</label
               ><textarea
+                id="mensagem"
+                name="mensagem"
                 placeholder="Conte brevemente o que sua empresa precisa."
               ></textarea>
             </div>
             <div class="field full">
-              <button class="btn btn-primary" type="button">
+              <button class="btn btn-primary" type="submit">
                 ENVIAR SOLICITAÇÃO
               </button>
             </div>
@@ -1309,5 +1312,43 @@
     >
       <img src="assets/logo-whatsapp.svg" alt="WhatsApp" />
     </a>
+    <script>
+      (function () {
+        var form = document.getElementById("form-contato");
+        if (!form) return;
+        var DESTINO = "contato@helpyservice.com.br";
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var v = function (id) {
+            return form.elements[id].value.trim();
+          };
+
+          var servico = v("servico");
+          var assunto =
+            "Solicitação de orçamento" + (servico ? " - " + servico : "");
+
+          var linhas = [
+            "Nome: " + v("nome"),
+            "Empresa: " + (v("empresa") || "-"),
+            "Telefone/WhatsApp: " + v("telefone"),
+            "E-mail: " + (v("email") || "-"),
+            "Tipo de serviço: " + (servico || "-"),
+            "",
+            "Necessidade:",
+            v("mensagem") || "-",
+          ];
+
+          window.location.href =
+            "mailto:" +
+            DESTINO +
+            "?subject=" +
+            encodeURIComponent(assunto) +
+            "&body=" +
+            encodeURIComponent(linhas.join("\r\n"));
+        });
+      })();
+    </script>
   </body>
 </html>
