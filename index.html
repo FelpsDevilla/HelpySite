@@ -27,7 +27,12 @@ svg.i{width:28px;height:28px;stroke:var(--coral);fill:none;stroke-width:1.7;stro
 .btn-outline{border-color:rgba(255,255,255,.5);color:#fff;background:transparent}
 .btn-red-outline{border-color:var(--coral);color:var(--coral);background:transparent;padding:10px 18px;font-weight:600}
 .btn-sm{padding:10px 16px}
-.btn-cliente .cliente-img{width:32px;height:32px;object-fit:contain;display:block;flex:none}
+.burger{display:none;width:42px;height:38px;border:1px solid rgba(255,255,255,.35);border-radius:3px;background:transparent;cursor:pointer;padding:0;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{display:block;width:18px;height:2px;background:#fff;transition:.2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.btn-cliente .cliente-img{width:16px;height:16px;object-fit:contain;display:block;flex:none}
 .hero{min-height:620px;padding-top:76px;display:flex;align-items:center;position:relative;overflow:hidden;
 background:linear-gradient(90deg,rgba(8,12,18,.95) 0%,rgba(8,12,18,.7) 45%,rgba(8,12,18,.1) 100%),url("assets/hero.jpg") right center/cover no-repeat,linear-gradient(135deg,#1c2733,#080b10)}
 .hero .container{padding:40px 0}
@@ -108,7 +113,12 @@ h2{font-size:clamp(26px,3.2vw,34px);line-height:1.12;margin:10px 0 16px;font-wei
 .whatsapp:hover{transform:scale(1.08)}
 .whatsapp img{width:88%;height:88%}
 @media(max-width:1000px){
-.menu,.nav-actions .btn-red-outline{display:none}
+.nav-actions .btn-red-outline{display:none}
+.burger{display:flex}
+.menu{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:rgba(11,18,25,.98);border-bottom:1px solid var(--line);padding:8px 20px 16px;font-size:15px}
+.menu.open{display:flex}
+.menu a{padding:14px 0;border-bottom:1px solid #1d2938}
+.menu a:first-child,.menu a:hover{border-color:#1d2938;color:var(--coral)}
 .split,.manut .grid,.segin,.cases,.cgrid,.cgrid>.r{grid-template-columns:1fr}
 .cards4,.cases4{grid-template-columns:1fr 1fr}
 .fgrid{grid-template-columns:1fr 1fr;justify-content:stretch}
@@ -116,14 +126,47 @@ h2{font-size:clamp(26px,3.2vw,34px);line-height:1.12;margin:10px 0 16px;font-wei
 }
 @media(max-width:600px){
 .container{width:calc(100% - 28px)}
-.hero h1{font-size:42px}
-.feat{padding:8px 0;border:0;width:50%}
-.three,.form{grid-template-columns:1fr}
-.three div{border:0;padding:10px 0}
-.cards4,.cases4,.fgrid{grid-template-columns:1fr}
-.fgrid{text-align:center;justify-items:center}
-.mapbox{flex-direction:column;align-items:flex-start}
+.nav{height:64px}
+.menu{top:64px}
+.logo img{height:36px}
 .nav-actions .btn-primary{display:none}
+.btn-cliente{padding:9px 12px;font-size:11px;white-space:nowrap}
+.nav-actions{gap:8px}
+.hero{min-height:0;padding-top:64px}
+.hero .container{padding:34px 0 40px}
+.hero h1{font-size:40px}
+.hero p{font-size:15px}
+.hero-actions{flex-direction:column;gap:10px}
+.hero-actions .btn{width:100%}
+.feats{margin-top:34px;gap:14px 0}
+.feat{padding:0;border:0;width:50%}
+.section{padding:44px 0}
+.manut{padding:44px 0;background:linear-gradient(rgba(11,18,25,.92),rgba(11,18,25,.92)),url("assets/secao_oque_fazemos_infraestrutura_e_racks.jpg") center/cover,var(--navy2)}
+.manut .btn{width:100%}
+.three{grid-template-columns:1fr;gap:6px}
+.three div{border:0;padding:12px 0;border-top:1px solid var(--line)}
+.three div:first-child{border-top:0}
+.cards4,.cases4,.fgrid{grid-template-columns:1fr}
+.tcard .ph{height:130px}
+.case{height:130px}
+.more{margin-top:14px}
+.icons{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 6px;margin:20px 0}
+.icons div{border:0;padding:0;max-width:none}
+.icons div:first-child{padding:0}
+.segin .btn-red-outline{width:100%}
+.mapbox{flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:24px 16px}
+.mapbox svg{width:180px}
+.mapbox>div{width:100%;text-align:left}
+.cases .btn-red-outline,.cgrid .btn-red-outline{width:100%}
+.cgrid>.l{padding:36px 0 26px}
+.cgrid>.r{padding:24px 16px;border-left:0;border-top:1px solid var(--line);margin:0 -14px}
+.wa .btn{width:100%}
+.three,.form{grid-template-columns:1fr}
+.form .btn{padding:15px}
+.form input,.form select,.form textarea{font-size:16px;padding:13px}
+.fgrid{gap:26px;text-align:center;justify-items:center}
+.fbottom{text-align:center}
+.whatsapp{width:52px;height:52px;right:12px;bottom:12px}
 }
 </style>
 </head>
@@ -140,12 +183,13 @@ h2{font-size:clamp(26px,3.2vw,34px);line-height:1.12;margin:10px 0 16px;font-wei
 <header class="header">
   <div class="container nav">
     <a class="logo" href="#inicio" aria-label="Helpy Service - Início"><img src="assets/logo.png" alt="Helpy Service - Tecnologias Integradas" /></a>
-    <nav class="menu">
+    <nav class="menu" id="menu">
       <a href="#inicio">Início</a><a href="#sobre">A Helpy</a><a href="#servicos">Serviços</a><a href="#manutencao">Manutenção</a><a href="#segmentos">Segmentos</a><a href="#projetos">Projetos</a><a href="#contato">Contato</a>
     </nav>
     <div class="nav-actions">
       <a class="btn btn-primary btn-sm" href="#contato">Solicitar proposta ↗</a>
       <a class="btn btn-outline btn-sm btn-cliente" href="https://software.leankeep.com/login"><img class="cliente-img" src="assets/area-cliente.png" alt="" width="16" height="16" onerror="this.style.display='none'" />Área do cliente</a>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
@@ -319,6 +363,15 @@ h2{font-size:clamp(26px,3.2vw,34px);line-height:1.12;margin:10px 0 16px;font-wei
     ];
     window.location.href = "mailto:" + DESTINO + "?subject=" + encodeURIComponent(assunto) + "&body=" + encodeURIComponent(linhas.join("\r\n"));
   });
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById("burger"),m=document.getElementById("menu");
+  if(!b||!m)return;
+  function set(o){m.classList.toggle("open",o);b.setAttribute("aria-expanded",o);b.setAttribute("aria-label",o?"Fechar menu":"Abrir menu");}
+  b.addEventListener("click",function(){set(!m.classList.contains("open"));});
+  m.addEventListener("click",function(e){if(e.target.tagName==="A")set(false);});
 })();
 </script>
 </body>
