@@ -1,1354 +1,325 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HELPY SERVICE — Tecnologias Integradas</title>
-    <meta
-      name="description"
-      content="Infraestrutura de TI, redes, segurança eletrônica, automação de acessos e manutenção técnica para empresas e operações que não podem parar."
-    />
-    <link rel="icon" href="assets/favicon.ico" />
-    <style>
-      :root {
-        --coral: #fa0644;
-        --graphite: #494949;
-        --dark: #151515;
-        --light: #f4f4f2;
-        --white: #fff;
-        --muted: #727272;
-        --line: #e4e4e4;
-        --max: 1180px;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        font-family: Inter, Montserrat, Arial, sans-serif;
-        color: var(--dark);
-        background: #fff;
-        line-height: 1.55;
-      }
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      .container {
-        width: min(var(--max), calc(100% - 40px));
-        margin: auto;
-      }
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50;
-        background: rgba(20, 20, 20, 0.9);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .nav {
-        height: 78px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .logo {
-        display: inline-flex;
-        align-items: center;
-      }
-      .logo img {
-        display: block;
-        height: 44px;
-        width: auto;
-      }
-      .menu {
-        display: flex;
-        gap: 28px;
-        color: #ddd;
-        font-size: 13px;
-        font-weight: 700;
-      }
-      .menu a:hover {
-        color: #fff;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 14px 22px;
-        border-radius: 3px;
-        font-weight: 800;
-        font-size: 12px;
-        letter-spacing: 0.04em;
-        border: 1px solid transparent;
-        transition: 0.2s;
-      }
-      .btn-primary {
-        background: var(--coral);
-        color: #fff;
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.06);
-      }
-      .btn-outline {
-        border-color: rgba(255, 255, 255, 0.45);
-        color: #fff;
-      }
-      .btn-dark {
-        background: var(--dark);
-        color: #fff;
-      }
-      .hero {
-        min-height: 760px;
-        padding-top: 78px;
-        background:
-          linear-gradient(
-            90deg,
-            rgba(10, 10, 10, 0.92) 0%,
-            rgba(10, 10, 10, 0.74) 47%,
-            rgba(10, 10, 10, 0.25) 100%
-          ),
-          radial-gradient(
-            circle at 75% 35%,
-            rgba(250, 6, 68, 0.35),
-            transparent 25%
-          ),
-          linear-gradient(135deg, #252525 0%, #080808 100%);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero:after {
-        content: "";
-        position: absolute;
-        right: -160px;
-        bottom: -220px;
-        width: 650px;
-        height: 650px;
-        border: 1px solid rgba(250, 6, 68, 0.28);
-        border-radius: 50%;
-        box-shadow:
-          0 0 0 90px rgba(250, 6, 68, 0.03),
-          0 0 0 180px rgba(250, 6, 68, 0.025);
-      }
-      .eyebrow {
-        color: #ff527c;
-        font-size: 12px;
-        font-weight: 900;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        margin-bottom: 18px;
-      }
-      .hero h1 {
-        font-size: clamp(42px, 6vw, 76px);
-        line-height: 0.98;
-        max-width: 850px;
-        margin: 0 0 24px;
-        font-weight: 900;
-        letter-spacing: -0.045em;
-      }
-      .hero h1 span {
-        color: var(--coral);
-      }
-      .hero p {
-        font-size: 19px;
-        max-width: 680px;
-        color: #ddd;
-        margin: 0 0 32px;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      .hero-meta {
-        margin-top: 48px;
-        display: flex;
-        gap: 34px;
-        flex-wrap: wrap;
-        color: #aaa;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .hero-meta b {
-        display: block;
-        color: #fff;
-        font-size: 13px;
-        margin-bottom: 3px;
-      }
-      .strip {
-        background: var(--coral);
-        color: #fff;
-      }
-      .strip-inner {
-        min-height: 78px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-      .strip strong {
-        font-size: 13px;
-        letter-spacing: 0.08em;
-      }
-      .strip-items {
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-      }
-      .section {
-        padding: 100px 0;
-      }
-      .section-light {
-        background: var(--light);
-      }
-      .section-dark {
-        background: var(--dark);
-        color: #fff;
-      }
-      .section-kicker {
-        font-size: 11px;
-        color: var(--coral);
-        font-weight: 900;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-      h2 {
-        font-size: clamp(32px, 4vw, 54px);
-        line-height: 1.02;
-        letter-spacing: -0.035em;
-        margin: 12px 0 20px;
-      }
-      .lead {
-        font-size: 18px;
-        color: var(--muted);
-        max-width: 760px;
-      }
-      .section-dark .lead {
-        color: #c7c7c7;
-      }
-      .intro {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 70px;
-        align-items: center;
-      }
-      .visual-stack {
-        display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 12px;
-        min-height: 450px;
-      }
-      .visual {
-        border-radius: 8px;
-        background: linear-gradient(145deg, #5b5b5b, #1d1d1d);
-        position: relative;
-        overflow: hidden;
-      }
-      .visual:before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          transparent 45%,
-          rgba(250, 6, 68, 0.35) 45.5%,
-          transparent 48%
-        );
-      }
-      .visual.tall {
-        min-height: 450px;
-      }
-      .visual.small {
-        margin-top: 60px;
-        min-height: 330px;
-      }
-      .visual-label {
-        position: absolute;
-        bottom: 18px;
-        left: 18px;
-        color: #fff;
-        font-size: 10px;
-        font-weight: 900;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-      .checks {
-        display: grid;
-        gap: 12px;
-        margin: 30px 0;
-      }
-      .check {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        font-weight: 800;
-      }
-      .check i {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: var(--coral);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-style: normal;
-        font-size: 12px;
-        flex: none;
-      }
-      .services-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        margin-top: 42px;
-      }
-      .card {
-        border: 1px solid var(--line);
-        padding: 30px;
-        border-radius: 7px;
-        background: #fff;
-        min-height: 310px;
-        display: flex;
-        flex-direction: column;
-        transition: 0.2s;
-      }
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
-        border-color: #ccc;
-      }
-      .card-num {
-        font-size: 12px;
-        color: var(--coral);
-        font-weight: 900;
-      }
-      .card h3 {
-        font-size: 22px;
-        line-height: 1.05;
-        margin: 28px 0 12px;
-      }
-      .card p {
-        color: var(--muted);
-        font-size: 14px;
-      }
-      .card ul {
-        padding-left: 18px;
-        color: #555;
-        font-size: 13px;
-        line-height: 1.9;
-      }
-      .card .link {
-        margin-top: auto;
-        color: var(--coral);
-        font-size: 11px;
-        font-weight: 900;
-        letter-spacing: 0.08em;
-      }
-      .problem {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 70px;
-        align-items: center;
-      }
-      .big-statement {
-        font-size: clamp(44px, 6vw, 76px);
-        font-weight: 900;
-        line-height: 0.95;
-        letter-spacing: -0.05em;
-        margin: 0;
-      }
-      .big-statement span {
-        color: var(--coral);
-      }
-      .process {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0;
-        margin-top: 50px;
-      }
-      .step {
-        padding: 26px;
-        border-top: 2px solid var(--coral);
-        border-right: 1px solid #ddd;
-      }
-      .step:last-child {
-        border-right: 0;
-      }
-      .step b {
-        font-size: 12px;
-        color: var(--coral);
-      }
-      .step h3 {
-        margin: 12px 0 8px;
-      }
-      .step p {
-        font-size: 13px;
-        color: var(--muted);
-      }
-      .plans {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-        margin-top: 38px;
-      }
-      .plan {
-        padding: 30px;
-        border-radius: 7px;
-        background: #fff;
-        border: 1px solid var(--line);
-      }
-      .plan h3 {
-        margin-top: 0;
-      }
-      .plan ul {
-        padding-left: 18px;
-        color: #555;
-        line-height: 2;
-      }
-      .segment-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-        margin-top: 42px;
-      }
-      .segment {
-        min-height: 180px;
-        border-radius: 7px;
-        padding: 26px;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        background: linear-gradient(145deg, #555, #181818);
-      }
-      .segment b {
-        font-size: 18px;
-      }
-      .segment span {
-        font-size: 12px;
-        color: #ddd;
-        margin-top: 5px;
-      }
-      .cases {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        margin-top: 42px;
-      }
-      .case {
-        min-height: 330px;
-        border-radius: 7px;
-        overflow: hidden;
-        position: relative;
-        background: linear-gradient(145deg, #626262, #151515);
-        color: #fff;
-        padding: 25px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-      }
-      .case:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(transparent 35%, rgba(0, 0, 0, 0.82));
-      }
-      .case > * {
-        position: relative;
-        z-index: 1;
-      }
-      .case small {
-        color: #ff5b82;
-        font-weight: 900;
-        letter-spacing: 0.12em;
-      }
-      .case h3 {
-        font-size: 24px;
-        margin: 7px 0;
-      }
-      .case p {
-        font-size: 13px;
-        color: #ddd;
-        margin: 0;
-      }
-      .why-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        margin-top: 42px;
-      }
-      .why {
-        padding: 28px;
-        border: 1px solid #333;
-        border-radius: 7px;
-        background: #1d1d1d;
-      }
-      .why b {
-        font-size: 16px;
-      }
-      .why p {
-        color: #bbb;
-        font-size: 13px;
-      }
-      .cta {
-        padding: 90px 0;
-        background: linear-gradient(90deg, #151515, #303030);
-        color: #fff;
-        position: relative;
-        overflow: hidden;
-      }
-      .cta .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 40px;
-      }
-      .cta h2 {
-        max-width: 720px;
-      }
-      .form-section {
-        background: var(--light);
-      }
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 0.75fr 1.25fr;
-        gap: 60px;
-        align-items: start;
-      }
-      .contact-info {
-        background: var(--dark);
-        color: #fff;
-        padding: 36px;
-        border-radius: 8px;
-      }
-      .contact-info h3 {
-        font-size: 28px;
-        margin-top: 0;
-      }
-      .contact-info p {
-        color: #bbb;
-        font-size: 14px;
-      }
-      .contact-info .item {
-        padding: 17px 0;
-        border-top: 1px solid #333;
-      }
-      .contact-info b {
-        display: block;
-        color: #fff;
-        margin-bottom: 4px;
-      }
-      .form {
-        background: #fff;
-        padding: 35px;
-        border-radius: 8px;
-        border: 1px solid var(--line);
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-      .field {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      .field.full {
-        grid-column: 1/-1;
-      }
-      .field label {
-        font-size: 11px;
-        font-weight: 900;
-        letter-spacing: 0.05em;
-      }
-      .field input,
-      .field textarea,
-      .field select {
-        border: 1px solid #ddd;
-        padding: 14px;
-        border-radius: 4px;
-        font: inherit;
-        outline: none;
-      }
-      .field textarea {
-        min-height: 130px;
-        resize: vertical;
-      }
-      .form .btn {
-        border: 0;
-        cursor: pointer;
-      }
-      .footer {
-        background: #111;
-        color: #aaa;
-        padding: 55px 0 25px;
-      }
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr 1fr;
-        gap: 40px;
-      }
-      .footer h4 {
-        color: #fff;
-        margin-top: 0;
-      }
-      .footer a {
-        display: block;
-        margin: 9px 0;
-        font-size: 13px;
-      }
-      .footer a.logo {
-        display: inline-flex;
-        margin: 0 0 16px;
-      }
-      .footer-bottom {
-        border-top: 1px solid #2a2a2a;
-        margin-top: 35px;
-        padding-top: 20px;
-        font-size: 11px;
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-      }
-      .whatsapp {
-        position: fixed;
-        right: 18px;
-        bottom: 18px;
-        z-index: 60;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 62px;
-        height: 62px;
-        background: #25d366;
-        border-radius: 50%;
-        transition: transform 0.2s;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      }
-      .whatsapp:hover {
-        transform: scale(1.08);
-      }
-      .whatsapp img {
-        width: 90%;
-        height: 90%;
-        display: block;
-      }
-      /* Imagens */
-      .visual > img,
-      .segment > img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-      }
-      .visual:before {
-        z-index: 1;
-      }
-      .visual:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: linear-gradient(transparent 55%, rgba(0, 0, 0, 0.72));
-      }
-      .visual-label {
-        z-index: 2;
-      }
-      .segment {
-        position: relative;
-        overflow: hidden;
-      }
-      .segment:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.85));
-      }
-      .segment > b,
-      .segment > span {
-        position: relative;
-        z-index: 2;
-      }
-      .case > img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-      }
-      @media (max-width: 900px) {
-        .menu,
-        .header .btn {
-          display: none;
-        }
-        .intro,
-        .problem,
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-        .services-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .process {
-          grid-template-columns: 1fr 1fr;
-        }
-        .segment-grid,
-        .cases,
-        .why-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .cta .container {
-          display: block;
-        }
-        .cta .btn {
-          margin-top: 15px;
-        }
-      }
-      @media (max-width: 600px) {
-        .container {
-          width: min(var(--max), calc(100% - 28px));
-        }
-        .logo img {
-          height: 38px;
-        }
-        .hero {
-          min-height: 700px;
-        }
-        .hero h1 {
-          font-size: 43px;
-        }
-        .hero p {
-          font-size: 16px;
-        }
-        .strip-inner {
-          padding: 20px 0;
-        }
-        .strip-items {
-          gap: 12px;
-        }
-        .section {
-          padding: 70px 0;
-        }
-        .services-grid,
-        .process,
-        .segment-grid,
-        .cases,
-        .why-grid,
-        .plans,
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
-        .visual-stack {
-          grid-template-columns: 1fr 1fr;
-          min-height: 320px;
-        }
-        .visual.tall {
-          min-height: 320px;
-        }
-        .visual.small {
-          min-height: 240px;
-          margin-top: 35px;
-        }
-        .form {
-          grid-template-columns: 1fr;
-        }
-        .field.full {
-          grid-column: auto;
-        }
-        .footer-bottom {
-          display: block;
-        }
-        .footer-bottom span {
-          display: block;
-          margin-top: 8px;
-        }
-        .whatsapp {
-          width: 56px;
-          height: 56px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="header">
-      <div class="container nav">
-        <a class="logo" href="#inicio" aria-label="Helpy Service - Início">
-          <img
-            src="assets/logo.png"
-            alt="Helpy Service - Tecnologias Integradas"
-          />
-        </a>
-        <nav class="menu">
-          <a href="#inicio">Início</a>
-          <a href="#empresa">A HELPY</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#manutencao">Manutenção</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#contato">Contato</a>
-        </nav>
-        <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
-        <a class="btn btn-primary" href="https://software.leankeep.com/login">AREA DO CLIENTE</a>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HELPY SERVICE — Tecnologias Integradas</title>
+<meta name="description" content="Contratos de manutenção preventiva e corretiva para infraestrutura de TI, segurança eletrônica e automação de acessos." />
+<link rel="icon" href="assets/favicon.ico" />
+<style>
+:root{--coral:#fa0644;--navy:#0b1219;--navy2:#111a24;--card:#0e1620;--line:#243040;--muted:#9aa5b1;--max:1180px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Montserrat,Arial,sans-serif;background:var(--navy);color:#fff;line-height:1.5}
+a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+svg.i{width:28px;height:28px;stroke:var(--coral);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(11,18,25,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo img{display:block;height:44px;width:auto}
+.menu{display:flex;gap:26px;font-size:12px;font-weight:600;color:#ddd}
+.menu a{padding:8px 0;border-bottom:2px solid transparent}
+.menu a:first-child,.menu a:hover{color:#fff;border-color:var(--coral)}
+.nav-actions{display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:3px;font-weight:700;font-size:12px;border:1px solid transparent;transition:.2s;cursor:pointer;font-family:inherit}
+.btn-primary{background:var(--coral);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn-outline{border-color:rgba(255,255,255,.5);color:#fff;background:transparent}
+.btn-red-outline{border-color:var(--coral);color:var(--coral);background:transparent;padding:10px 18px;font-weight:600}
+.btn-sm{padding:10px 16px}
+.btn-cliente .cliente-img{width:32px;height:32px;object-fit:contain;display:block;flex:none}
+.hero{min-height:620px;padding-top:76px;display:flex;align-items:center;position:relative;overflow:hidden;
+background:linear-gradient(90deg,rgba(8,12,18,.95) 0%,rgba(8,12,18,.7) 45%,rgba(8,12,18,.1) 100%),url("assets/hero.jpg") right center/cover no-repeat,linear-gradient(135deg,#1c2733,#080b10)}
+.hero .container{padding:40px 0}
+.eyebrow{color:var(--coral);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(42px,6vw,64px);line-height:1;margin:0 0 22px;font-weight:700;letter-spacing:-.03em;max-width:560px}
+.hero p{font-size:16px;max-width:430px;color:#e5e8eb;margin:0 0 28px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-actions .btn{padding:16px 24px;font-size:13px}
+.feats{display:flex;gap:0;margin-top:56px;flex-wrap:wrap}
+.feat{display:flex;gap:12px;align-items:center;font-size:12px;color:#ddd;padding:0 26px;border-left:1px solid rgba(255,255,255,.15)}
+.feat:first-child{padding-left:0;border:0}
+.section{padding:56px 0}
+.light{background:#fff;color:var(--navy)}
+.kicker{font-size:11px;color:var(--coral);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+h2{font-size:clamp(26px,3.2vw,34px);line-height:1.12;margin:10px 0 16px;font-weight:700;letter-spacing:-.02em}
+.sub{font-size:14px;color:#c4cbd2;max-width:420px}
+.light .sub{color:#333}
+.more{display:inline-flex;gap:8px;margin-top:22px;color:var(--coral);font-weight:600;font-size:14px}
+.split{display:grid;grid-template-columns:330px 1fr;gap:30px;align-items:center}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tcard{background:var(--navy);color:#fff;border-radius:7px;overflow:hidden;display:flex;flex-direction:column;border:1px solid #1d2938}
+.tcard .ph{height:108px;background:#223 center/cover;position:relative}
+.tcard .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,var(--navy))}
+.tcard .body{padding:0 14px 16px;display:flex;flex-direction:column;flex:1;margin-top:-16px;position:relative;z-index:1}
+.tcard .body svg.i{width:22px;height:22px;margin-bottom:10px}
+.tcard h3{font-size:14px;margin:0 0 6px}
+.tcard p{font-size:11.5px;color:#c4cbd2;margin:0 0 12px}
+.tcard .s{margin-top:auto;color:var(--coral);font-size:11px;font-weight:700}
+.manut{background:linear-gradient(90deg,#0b1219 0%,#0b1219 50%,rgba(11,18,25,.3) 100%),url("assets/secao_oque_fazemos_infraestrutura_e_racks.jpg") right center/cover,var(--navy2);padding:60px 0;min-height:225px}
+.manut .grid{display:grid;grid-template-columns:330px 1fr;gap:30px;align-items:center}
+.three{display:grid;grid-template-columns:repeat(3,1fr);max-width:620px;justify-self:center}
+.three div{padding:0 20px;border-left:1px solid var(--line)}
+.three div:first-child{border:0}
+.three b{display:block;margin:10px 0 6px;font-size:14px}
+.three p{font-size:11px;color:var(--muted);margin:0}
+.seg{background:#fff;color:var(--navy);padding:44px 0}
+.segin{display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:center}
+.seg .sub{color:#333;max-width:none}
+.icons{display:flex;gap:0;margin:22px 0 18px;flex-wrap:wrap}
+.icons div{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-size:10.5px;padding:0 14px;border-left:1px solid #e2e2e2;max-width:110px}
+.icons div:first-child{border:0;padding-left:0}
+.mapbox{background:var(--navy) url("assets/segmentos_terminais_portuarios.jpg") right center/cover;border-radius:8px;min-height:260px;display:flex;align-items:center;justify-content:center;gap:40px;padding:24px;position:relative;overflow:hidden}
+.mapbox:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,18,25,.95) 35%,rgba(11,18,25,.1));}
+.mapbox>*{position:relative}
+.mapbox svg{width:200px;height:auto;flex:none;display:block;margin:0}
+.mapbox>div{text-align:left;background:rgba(11,18,25,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:16px 22px;border-radius:6px;border-left:3px solid var(--coral);box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.mapbox b{color:var(--coral);font-size:14px}
+.mapbox p{margin:2px 0 14px;font-size:12px;color:#fff}.mapbox p:last-child{margin-bottom:0}
+.cases{display:grid;grid-template-columns:340px 1fr;gap:30px;align-items:center}
+.cases4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.case{height:122px;border-radius:7px;background:#223 center/cover;border:1px solid var(--line);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;overflow:hidden}
+.case:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.88))}
+.case>*{position:relative;z-index:1}
+.case b{font-size:11px}.case span{font-size:9.5px;color:#cfd5db;padding-right:26px}
+.case i{position:absolute;right:10px;bottom:10px;width:22px;height:22px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11px;z-index:2}
+.contact{background:linear-gradient(90deg,rgba(11,18,25,.94),rgba(11,18,25,.97)),url("assets/secao_sobre_a_helpy.jpg") center/cover;padding:0}
+.cgrid{display:grid;grid-template-columns:1fr 1.7fr}
+.cgrid>.l{padding:46px 40px 46px 0}
+.cgrid>.r{background:rgba(14,22,32,.95);padding:30px;display:grid;grid-template-columns:1fr 1.1fr;gap:30px;border-left:1px solid var(--line)}
+.wa{display:flex;flex-direction:column;gap:12px;font-size:12px;color:#c4cbd2;justify-content:center}
+.wa img{width:42px;height:42px}
+.wa .btn{padding:15px;font-size:13px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form .full{grid-column:1/-1}
+.form small{grid-column:1/-1;font-weight:700;font-size:11px}
+.form input,.form select,.form textarea{width:100%;background:transparent;border:1px solid var(--line);border-radius:3px;padding:10px;color:#fff;font:inherit;font-size:11px;outline:none}
+.form select option{color:#000}
+.form textarea{min-height:60px;resize:vertical}
+.form .btn{width:100%}
+.footer{background:#080d13;border-top:1px solid var(--line);padding:34px 0 0}
+.fgrid{display:grid;grid-template-columns:repeat(4,auto);justify-content:center;gap:24px 70px;align-items:start;font-size:11px;color:#c4cbd2}
+.fgrid h4{margin:0 0 10px;font-size:11px;color:#fff}
+.fgrid a{display:block;margin:6px 0}
+.social{display:flex;gap:12px}
+.social a{width:22px;height:22px;border:1.5px solid #fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.fbottom{margin-top:26px;border-top:1px solid #1b2531;padding:14px 0;font-size:10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;color:#aaa}
+.whatsapp{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 25px rgba(0,0,0,.35);transition:.2s}
+.whatsapp:hover{transform:scale(1.08)}
+.whatsapp img{width:88%;height:88%}
+@media(max-width:1000px){
+.menu,.nav-actions .btn-red-outline{display:none}
+.split,.manut .grid,.segin,.cases,.cgrid,.cgrid>.r{grid-template-columns:1fr}
+.cards4,.cases4{grid-template-columns:1fr 1fr}
+.fgrid{grid-template-columns:1fr 1fr;justify-content:stretch}
+.cgrid>.l{padding-right:0}
+}
+@media(max-width:600px){
+.container{width:calc(100% - 28px)}
+.hero h1{font-size:42px}
+.feat{padding:8px 0;border:0;width:50%}
+.three,.form{grid-template-columns:1fr}
+.three div{border:0;padding:10px 0}
+.cards4,.cases4,.fgrid{grid-template-columns:1fr}
+.fgrid{text-align:center;justify-items:center}
+.mapbox{flex-direction:column;align-items:flex-start}
+.nav-actions .btn-primary{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18M8 15l2 2 4-4"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+<symbol id="doc" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></symbol>
+<symbol id="box" viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+</defs></svg>
+
+<header class="header">
+  <div class="container nav">
+    <a class="logo" href="#inicio" aria-label="Helpy Service - Início"><img src="assets/logo.png" alt="Helpy Service - Tecnologias Integradas" /></a>
+    <nav class="menu">
+      <a href="#inicio">Início</a><a href="#sobre">A Helpy</a><a href="#servicos">Serviços</a><a href="#manutencao">Manutenção</a><a href="#segmentos">Segmentos</a><a href="#projetos">Projetos</a><a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-sm" href="#contato">Solicitar proposta ↗</a>
+      <a class="btn btn-outline btn-sm btn-cliente" href="https://software.leankeep.com/login"><img class="cliente-img" src="assets/area-cliente.png" alt="" width="16" height="16" onerror="this.style.display='none'" />Área do cliente</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="eyebrow">Manutenção técnica empresarial</div>
+    <h1>Sua operação não pode parar.</h1>
+    <p>Contratos de manutenção preventiva e corretiva para infraestrutura de TI, segurança eletrônica e automação de acessos.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://wa.me/555399042226" target="_blank" rel="noopener">Solicitar proposta de manutenção →</a>
+      <a class="btn btn-outline" href="#servicos">Conheça nossos serviços</a>
+    </div>
+    <div class="feats">
+      <div class="feat"><svg class="i"><use href="#cal"/></svg><span>Manutenção preventiva<br>e corretiva</span></div>
+      <div class="feat"><svg class="i"><use href="#shield"/></svg><span>Equipe técnica<br>especializada</span></div>
+      <div class="feat"><svg class="i"><use href="#gear"/></svg><span>Soluções integradas<br>em um só parceiro</span></div>
+      <div class="feat"><svg class="i"><use href="#pin"/></svg><span>Atuação no RS<br>e expansão para SC</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section light" id="servicos">
+  <div class="container split">
+    <div>
+      <div class="kicker">Nossas especialidades</div>
+      <h2>Soluções integradas para o seu negócio.</h2>
+      <p class="sub">Projetos, implantação e manutenção com equipe técnica especializada e atendimento personalizado para cada necessidade.</p>
+      <a class="more" href="#contato">Conheça todos os serviços →</a>
+    </div>
+    <div class="cards4">
+      <article class="tcard"><div class="ph" style="background-image:url(assets/cases_redes_e_fibra_optica.jpg)"></div><div class="body"><svg class="i"><use href="#cal"/></svg><h3>Redes e infraestrutura de TI</h3><p>Cabeamento estruturado, fibra óptica e racks.</p><a class="s" href="#contato">Saiba mais →</a></div></article>
+      <article class="tcard"><div class="ph" style="background-image:url(assets/cases_cftv_e_controle_de_acesso.jpg)"></div><div class="body"><svg class="i"><use href="#gear"/></svg><h3>Segurança eletrônica</h3><p>CFTV, controle de acesso e monitoramento.</p><a class="s" href="#contato">Saiba mais →</a></div></article>
+      <article class="tcard"><div class="ph" style="background-image:url(assets/cases_cancelar_e_portoes.jpg)"></div><div class="body"><svg class="i"><use href="#doc"/></svg><h3>Automação de acessos</h3><p>Cancelas, torniquetes, catracas e sistemas.</p><a class="s" href="#contato">Saiba mais →</a></div></article>
+      <article class="tcard"><div class="ph" style="background-image:url(assets/secao_oque_fazemos_automacao_de_acesso.jpg)"></div><div class="body"><svg class="i"><use href="#gear"/></svg><h3>Manutenção técnica</h3><p>Diagnóstico, reparos, testes e relatórios.</p><a class="s" href="#contato">Saiba mais →</a></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="manut" id="manutencao">
+  <div class="container grid">
+    <div>
+      <div class="kicker">Contratos de manutenção</div>
+      <h2>Manutenção contínua para empresas que não podem parar.</h2>
+      <p class="sub" style="font-size:12px">Planos personalizados para manter seus sistemas sempre operacionais, com mais segurança, produtividade e controle.</p>
+      <a class="btn btn-primary" style="margin-top:18px" href="#contato">Solicitar proposta de manutenção →</a>
+    </div>
+    <div class="three">
+      <div><svg class="i" style="width:34px;height:34px"><use href="#cal"/></svg><b>Preventiva</b><p>Inspeções programadas, checklists, avaliação de desgaste e recomendações técnicas.</p></div>
+      <div><svg class="i" style="width:34px;height:34px"><use href="#gear"/></svg><b>Corretiva</b><p>Diagnóstico de falhas, reparos, substituições e testes funcionais.</p></div>
+      <div><svg class="i" style="width:34px;height:34px"><use href="#doc"/></svg><b>Gestão técnica</b><p>Histórico dos serviços, registros, pendências e recomendações de melhoria.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="seg" id="segmentos">
+  <div class="container segin">
+    <div>
+      <div class="kicker">Segmentos atendidos</div>
+      <h2>Tecnologia integrada para operações em todo o Sul.</h2>
+      <p class="sub">Atuação empresarial no Rio Grande do Sul, com estratégia de expansão comercial para Santa Catarina.</p>
+      <div class="icons">
+        <div><svg class="i"><use href="#gear"/></svg>Indústria</div>
+        <div><svg class="i"><use href="#box"/></svg>Portos e terminais</div>
+        <div><svg class="i"><use href="#box"/></svg>Transportadoras e logística</div>
+        <div><svg class="i"><use href="#box"/></svg>Centros de distribuição</div>
+        <div><svg class="i"><use href="#doc"/></svg>Empresas</div>
       </div>
-    </header>
+      <a class="btn btn-red-outline" href="#contato">Ver todos os segmentos →</a>
+    </div>
+    <div class="mapbox">
+      <svg viewBox="82800 153800 44000 38800" aria-label="Mapa RS e SC">
+        <defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2a5f"/><stop offset="1" stop-color="#d30538"/></linearGradient></defs>
+        <path d="M101205 160059 101205 159962 101366 159930 101237 159866 101334 159834 101269 159705 101334 159769 101462 159737 101334 159641 101366 159544 101495 159608 101334 159448 101495 159576 101559 159544 101462 159480 101430 159351 101527 159448 101591 159383 101527 159255 101623 159319 101688 159255 101623 159190 101752 159190 101655 159094 101688 159030 101816 159030 101784 158901 101977 158965 101848 158869 101945 158805 101945 158708 101848 158676 101913 158580 101848 158547 102009 158547 101848 158483 101784 158322 101848 158322 101752 158194 101816 158097 101688 158129 101623 158065 101688 158097 101752 158001 101688 157904 101591 157969 101623 157904 101559 157872 101559 157808 101591 157872 101688 157776 101623 157679 101688 157744 101752 157679 101688 157615 101752 157615 101720 157518 101655 157551 101559 157486 101623 157486 101720 157100 101784 157100 101655 157100 101720 157068 101623 157004 101720 157004 101752 156908 101688 156908 101688 156811 101816 156843 101784 156779 101848 156747 101848 156682 101784 156715 101752 156650 101848 156650 101816 156522 101880 156522 101784 156232 101848 156200 101880 156007 101977 155975 102105 155589 102363 155589 102524 155782 102781 155814 103102 155718 103359 155525 103649 155621 103810 155557 103938 155814 104260 156039 104453 156039 104710 156264 105192 156039 105385 156136 105867 156039 106285 156072 106382 156007 106478 156104 106671 156072 107057 156393 107121 156329 107250 156361 107411 156297 107668 156490 107989 156425 108215 156522 108247 156457 108279 156522 108440 156490 108536 156618 108825 156618 108986 156522 109115 156650 109404 156715 109404 156811 109790 157036 109822 157133 110112 157133 110433 157229 110465 157293 110723 157197 111333 157197 111462 157100 111623 157229 112202 157197 112330 157326 112298 157390 112427 157422 112555 157711 112684 157776 112652 157840 112748 157776 112684 157647 112748 157583 113038 157518 113263 157551 113295 157454 113488 157422 113520 157358 113552 157036 113327 156811 113423 156618 113295 156586 113327 156522 113198 156425 113263 156361 113231 156297 113295 156329 113295 156264 113423 156200 113359 156136 113456 155943 113616 155814 114099 155686 114227 155461 114356 155557 114613 155461 114742 155557 114742 155654 114870 155718 114935 155654 114870 155525 114935 155493 115031 155589 115031 155750 115160 155718 115224 155525 115385 155686 115578 155461 115771 155429 115803 155557 115931 155557 115867 155332 116285 154978 116221 154850 116317 154721 116382 154657 116574 154689 116735 154625 116735 154560 116542 154560 116639 154367 116735 154560 116928 154464 117089 154528 117121 154464 117250 154528 117282 154657 117443 154625 117603 154753 117603 154914 117764 155011 117828 155011 117764 154978 117764 154753 117925 154625 118150 154593 118150 154496 118246 154528 118279 154657 118343 154625 118472 154721 118600 154560 118472 154528 118536 154464 118632 154464 118632 154625 118697 154560 118761 154657 118922 154560 118954 154464 118986 154593 119147 154496 119308 154560 119308 154432 119372 154400 119500 154464 119468 154625 119629 154400 119661 154496 119983 154528 120079 154657 120111 154593 120144 154689 120079 154721 120144 154689 120176 154818 120240 154785 120336 154914 120369 154850 120401 154946 120433 154850 120529 155043 120658 155043 120594 155107 120626 155171 120787 155139 120883 155203 120819 155268 120979 155268 121012 155364 121108 155268 121076 155364 121172 155364 121237 155461 121333 155461 121333 155396 121462 155525 121462 155461 121558 155461 121526 155396 121687 155461 121783 155236 121912 155139 122008 155139 122008 155203 122201 155075 122233 155139 122587 154882 122651 154914 122651 154850 122716 154850 122684 154753 122877 154689 122941 154496 123262 154367 123423 154432 123487 154335 123616 154400 123745 154335 123809 154464 123905 154367 124066 154432 124227 154271 125610 154271 125770 154142 125867 154271 125995 154239 125931 154625 126060 155171 126317 155139 126317 155332 126445 155461 126478 155396 125674 157165 125577 157615 125610 158033 125738 158129 125738 158065 125802 158097 125867 158194 126060 158162 125963 158387 125835 158419 125770 158740 125770 158837 125867 158869 125867 159094 125802 159126 125931 159255 126060 159190 126124 159287 125995 159576 126028 159641 125931 159673 125963 159834 126124 159994 126285 159962 126413 159769 126381 159866 126445 159962 126606 159930 126445 160123 126542 160251 126381 160316 126445 160219 126317 160123 126220 160155 125931 160316 125899 160477 125995 160766 126060 160798 126253 160702 126253 160830 126349 160862 126285 160927 126285 161120 126253 161023 126188 161023 126124 161313 125867 161345 125770 161602 125835 161827 125931 161891 125899 161956 126092 162052 126124 162149 126060 162245 125995 162245 125995 162181 125835 162213 125835 162342 125770 162342 125963 162470 126028 162888 125963 163017 126092 163370 125963 163467 126028 163563 126092 163531 126092 163595 125867 163885 125835 164174 125995 164271 125931 164303 125931 164431 125802 164624 125835 164721 125674 165010 125674 165235 125770 165267 125610 165364 125481 165589 125449 165718 125513 165750 125320 166007 125320 166168 125192 166393 125192 166521 125320 166586 125127 166875 124966 166972 124999 167068 124098 167454 123198 168033 122298 168772 121044 170155 120722 170605 120561 170605 120626 170541 120529 170444 120433 170476 120079 170348 120111 170283 119983 170090 119597 169962 119340 170123 118793 170251 118825 170380 119050 170508 119179 170701 119050 170669 119082 170605 118986 170605 119018 170573 118761 170380 118697 170476 118632 170380 118697 170251 118568 170219 118697 170155 118632 170123 118729 170058 118632 169994 118697 169930 118889 170026 118825 170155 118954 170123 118889 169801 119018 169769 118922 169833 118986 169930 119050 169865 119050 169930 119179 169865 119275 169898 119211 169833 119308 169769 119275 169640 119404 169672 119404 169576 119533 169576 119500 169415 119565 169415 119533 169351 119629 169287 119404 169383 119308 169351 119533 169254 119629 169126 119500 169126 119565 168997 119629 168997 119629 168901 119725 168901 119565 168804 119629 168643 119500 168611 119693 168386 119500 168386 119597 168290 119533 168290 119533 168033 119597 168065 119533 167936 119597 167808 119661 167840 119725 167775 119661 167743 119693 167615 119886 167615 119886 167775 119951 167743 119951 167550 120079 167550 120111 167615 120111 167550 120208 167518 120111 167390 120240 167325 120208 167261 120304 167132 120369 167100 120401 167197 120497 167132 120497 167197 120754 167197 120819 167132 120722 167068 120722 166907 120529 166779 120626 166650 120561 166521 120433 166521 120465 166361 120369 166425 120369 166554 120240 166393 120240 166489 120176 166457 120111 166554 120111 166489 119983 166489 119983 166361 119918 166328 120047 166296 119951 166264 119854 166264 119886 166361 119822 166393 119661 166328 119693 166425 119629 166457 119565 166328 119436 166264 119340 166361 119275 166328 119179 166457 118954 166425 118889 166489 118761 166425 118825 166296 118761 166200 118600 166361 118697 166521 118600 166554 118504 166328 118375 166296 118279 166393 118182 166200 118086 166264 118150 166328 118053 166361 117796 166232 117700 166393 117668 166168 117507 166296 117185 166136 116832 166103 116832 166200 116767 166200 116542 165975 116382 166039 116382 165910 116189 165782 116221 165685 116060 165525 116060 165428 115771 165332 115739 165075 115610 165075 115642 164817 115481 164817 115417 164689 115288 164785 115192 164753 115192 164592 115063 164528 115160 164464 115192 164271 114967 164174 114967 164013 114677 163821 114613 163949 114549 163949 114517 163756 114356 163628 114356 163467 114227 163435 114227 163306 114002 163306 113970 163145 113713 163017 113552 162985 113488 163049 113295 162759 113134 162759 113134 162534 113038 162502 112941 162567 112813 162470 112845 162309 112780 162277 112555 162438 112555 162342 112362 162149 112298 161956 112009 161956 111912 162084 111848 161988 111880 161795 111784 161795 111719 161891 111623 161859 111655 161634 111559 161634 111526 161763 111430 161763 111430 161602 111366 161570 111301 161570 111205 161731 111044 161602 110819 161634 110883 161763 110883 161827 110819 161827 110723 161731 110594 161795 110626 161570 110465 161570 110465 161763 110401 161763 110305 161473 110080 161538 110176 161345 110080 161248 109854 161216 109854 161152 110112 161152 110112 161087 109790 161023 109822 160862 109404 160927 109372 160734 109083 160766 109083 160573 108825 160862 108729 160734 108568 160702 108761 160541 108665 160477 108440 160509 108472 160798 108247 160637 108086 160734 108054 160477 107989 160477 108022 160637 107957 160670 107797 160509 107829 160284 107604 160380 107604 160541 107346 160509 107282 160412 106896 160541 106703 160412 106607 160605 106478 160380 106318 160509 106253 160444 106253 160251 105867 160251 105835 160059 105482 160219 105449 160059 105321 160026 105257 160316 105128 160251 105224 159962 105160 159898 104999 159994 104935 159962 105031 159641 104871 159641 104774 159737 104806 159994 104485 160091 104388 159898 104260 160155 104003 160059 103681 160284 103617 160284 103617 160187 103745 159866 103681 159801 103488 159801 103392 159673 103263 159769 103199 159930 102974 159994 102877 159898 102749 159898 102813 160219 102459 160091 102202 160155 102105 160316 102073 160123 101977 160026 101655 160155 101591 160155 101462 159962 101302 160091zM126124 162663 126188 162406 126349 162406 126317 162245 126156 162116 126285 162020 126381 162052 126349 161988 126413 161923 126317 161859 126381 161731 126253 161634 126349 161441 126220 161473 126349 161345 126542 161377 126799 161280 126767 161120 126864 161087 126960 161377 127056 161409 127089 161345 127121 161409 127056 161441 127056 161602 126960 161634 126799 161891 126799 162052 126864 162020 126831 162116 126445 162727 126413 162888 126574 162985 126445 163113 126413 163049 126317 163081 126253 163274 126156 163338 126188 163210 126060 162952 126188 162856 126156 162727 126220 162631zM126156 161570 126124 161570z" fill="url(#gm)" stroke="#0b1219" stroke-width="320" stroke-linejoin="round"/>
+        <path d="M84646 173756 84646 173306 84807 173048 85032 172856 85386 172823 85739 172631 86640 171602 87154 171280 87251 171151 87283 170830 87604 170766 87829 170348 87829 170123 88119 169576 88376 169544 88569 169415 88955 169383 89051 169094 88955 168997 88987 168869 89341 168708 89534 168451 89534 168000 89694 167904 90048 167904 90337 167486 90916 167036 90948 166972 90820 166811 90884 166586 91495 166425 91398 166071 91527 165878 92170 165943 92299 166200 92363 166200 92492 165718 92009 165460 92009 165300 92363 165203 92685 164978 92781 164689 92910 164721 92877 164849 93038 164914 93070 164785 93231 164689 93328 164496 93553 164592 93713 164399 93939 164271 93842 164110 93906 163981 94035 163981 94131 163756 94421 163788 94549 163563 94742 163403 94871 163435 95032 163628 95096 163563 95064 163435 95160 163370 95289 163338 95514 163435 95514 163242 95257 163081 95418 162985 95611 163145 95707 163017 95964 163017 96125 162792 96125 162374 96157 162309 96382 162277 96543 161827 96639 161859 96672 162052 96736 162084 96897 161988 97186 162052 97218 161698 97347 161891 97443 161891 97636 161441 97893 161698 98022 161570 98311 161538 98183 161313 98344 161313 98440 161216 98762 161506 98826 161473 98794 161216 99019 161409 99147 161377 99180 161184 99405 161055 99597 160477 99726 160702 100048 160702 100144 160509 100273 160477 100369 160219 100594 160187 100626 159994 100852 160091 100980 159866 101077 159866 101237 160091 101462 159962 101591 160155 101977 160026 102138 160316 102202 160155 102459 160091 102813 160219 102749 159898 102877 159898 102974 159994 103199 159930 103263 159769 103392 159673 103488 159801 103681 159801 103745 159866 103617 160187 103617 160284 103681 160284 104003 160059 104260 160155 104388 159898 104485 160091 104806 159994 104774 159737 104871 159641 105031 159641 104935 159962 104999 159994 105128 159898 105224 159962 105128 160251 105257 160316 105321 160026 105449 160059 105482 160219 105835 160059 105867 160251 106253 160251 106253 160444 106318 160509 106478 160380 106607 160605 106703 160412 106896 160541 107282 160412 107346 160509 107604 160541 107604 160380 107829 160284 107797 160509 107957 160670 108022 160637 107989 160477 108054 160477 108086 160734 108247 160637 108472 160798 108440 160509 108665 160477 108761 160541 108568 160702 108729 160734 108825 160862 109083 160573 109083 160766 109372 160734 109404 160927 109822 160862 109790 161023 110112 161087 110112 161152 109854 161152 109854 161216 110080 161248 110176 161409 110047 161506 110305 161473 110401 161763 110465 161763 110465 161570 110626 161570 110594 161795 110723 161731 110819 161827 110883 161827 110819 161634 111044 161602 111205 161731 111269 161602 111366 161570 111430 161602 111430 161763 111526 161763 111559 161634 111655 161634 111623 161859 111719 161891 111784 161795 111880 161795 111848 161988 111912 162084 112009 161956 112298 161956 112362 162149 112555 162342 112555 162438 112780 162277 112845 162309 112813 162470 112941 162567 113038 162502 113134 162534 113134 162759 113295 162759 113488 163049 113552 162985 113713 163017 113970 163145 114002 163306 114227 163306 114227 163435 114356 163467 114356 163628 114517 163756 114549 163949 114613 163949 114677 163821 114967 164013 114967 164174 115192 164271 115160 164464 115063 164528 115192 164592 115192 164753 115288 164785 115417 164689 115481 164817 115642 164817 115610 165075 115739 165075 115771 165332 116060 165428 116060 165525 116221 165685 116189 165782 116382 165910 116382 166039 116542 165975 116767 166200 116832 166200 116832 166103 117185 166136 117507 166296 117668 166168 117700 166393 117796 166232 118053 166361 118150 166328 118086 166264 118182 166200 118279 166393 118375 166296 118504 166328 118600 166554 118697 166521 118600 166361 118761 166200 118825 166264 118761 166425 118889 166489 118954 166425 119179 166457 119275 166328 119340 166361 119436 166264 119565 166328 119629 166457 119693 166425 119661 166328 119822 166393 119886 166361 119854 166264 119951 166264 120047 166296 119918 166328 119983 166361 119983 166489 120111 166489 120111 166554 120176 166457 120240 166489 120240 166393 120369 166554 120369 166425 120465 166361 120433 166521 120561 166521 120626 166650 120529 166779 120722 166907 120722 167068 120819 167132 120754 167197 120497 167197 120497 167132 120401 167197 120369 167100 120304 167132 120208 167261 120240 167325 120111 167390 120208 167518 120111 167550 120111 167615 120079 167550 119951 167550 119951 167743 119886 167775 119886 167615 119693 167615 119661 167743 119725 167775 119661 167840 119597 167808 119533 167936 119597 168000 119597 168065 119533 168033 119533 168290 119597 168290 119500 168386 119693 168386 119500 168611 119629 168643 119565 168804 119725 168901 119629 168901 119629 168997 119565 168997 119500 169126 119629 169126 119533 169254 119308 169351 119404 169383 119629 169287 119533 169351 119565 169415 119500 169415 119533 169576 119404 169576 119404 169672 119275 169640 119308 169769 119211 169833 119275 169898 119179 169865 119050 169930 119050 169865 118986 169930 118922 169833 119018 169769 118889 169801 118954 169962 118954 170123 118889 170155 118922 170090 118825 170155 118889 170026 118697 169930 118632 169994 118729 170026 118632 170090 118697 170155 118568 170219 118697 170251 118632 170380 118697 170476 118761 170380 119018 170573 118986 170605 119082 170605 119050 170669 119179 170701 119050 170508 118825 170380 118793 170251 119340 170123 119533 169962 119983 170090 120111 170283 120079 170348 120433 170476 120529 170444 120626 170541 120561 170605 120722 170605 119565 172180 119147 172984 118664 174045 117989 175878 117603 176618 115706 179318 115160 179929 113777 181087 113423 181537 112716 182084 110755 183209 110240 183595 109533 184334 109501 184559 109404 184431 108986 184688 108247 185717 107893 186617 107668 187550 107025 188868 106736 189318 106092 190025 103970 191762 103263 192212 103102 192148 103038 191923 102620 191890 102588 191697 102652 191601 102588 191537 102652 191440 102749 190251 102652 189768 102684 189286 103006 188804 103456 188546 103681 188579 103970 188225 103681 188128 103777 188032 103842 188128 103777 188032 104260 187807 104356 187582 104453 187485 104742 187421 104806 187260 104324 186842 104003 186714 103970 186585 103777 186682 103552 186521 103456 186553 103392 186456 103295 186521 103167 186392 103102 186424 102941 186006 102652 186038 102363 185846 102234 185588 102073 185524 102138 185363 102041 185170 102105 185106 101784 184624 101720 184495 101752 184399 101655 184399 101623 184141 101720 184141 101559 184013 101237 183948 101109 183788 101109 183659 100916 183627 100819 183498 100594 183434 100530 183370 100594 183273 100530 183241 100208 183145 99983 183338 99919 183305 99662 183016 98247 181955 98215 181633 98183 181666 98054 181505 97893 181215 97668 181119 97636 180990 97218 180990 96800 180830 96447 180926 96189 180605 95964 180637 95964 180508 95868 180476 95900 180379 95739 180283 95643 180058 95514 180090 95450 180283 95321 180379 94871 180154 94807 180058 94517 180026 94485 179769 94324 179704 94389 179640 94292 179576 94292 179479 94067 179415 94131 179190 93971 179093 94003 178965 93906 178933 93906 178868 93746 178900 93585 178804 93649 178707 93585 178579 93488 178515 93392 178547 93263 178290 93070 178225 92942 177968 92556 178097 92524 178161 92620 178322 92524 178547 92395 178547 92363 178482 92299 178547 92234 178482 92234 178675 92138 178675 92106 178772 92009 178740 92041 178804 91977 178836 91816 178836 91752 178997 91656 178965 91559 179126 91463 179158 91398 179093 91238 179190 91045 179126 90980 179190 90884 179158 90852 178772 90916 178643 90852 178515 90980 178064 90820 177711 90627 177646 90595 177518 90466 177582 90434 177454 90305 177486 90337 177389 90209 177325 90273 177196 90144 177132 90144 177003 90048 176939 90112 176875 89887 176843 89791 176682 89694 176746 89727 176650 89662 176585 89598 176618 89534 176425 89469 176489 89341 176457 89244 176296 89116 176328 89019 176167 89051 176071 88987 176071 88955 175974 88858 176007 88730 175749 88601 175846 88537 175685 88344 175653 88344 175396 88312 175460 88215 175299 87990 175331 88055 175267 88022 175171 87958 175203 87862 174978 87765 174978 87862 174881 87636 174881 87572 174753 87251 174688 87251 174495 87122 174399 86801 174303 86640 174431 86511 174335 86318 174367 86286 174303 86093 174303 86061 174399 85997 174399 85868 174367 85868 174303 85772 174463 85643 174431 85707 174560 85579 174592 85450 174849 85386 174849 85450 175042 85161 175299 85032 175299 84968 175203 84839 175331 84711 175138 84518 175267 84485 175203 84357 175364 84196 175364 84228 175267 84003 175203 83875 175203 83842 175299 83585 175235 83521 174913 83199 174785 83135 174817 83585 174688 83907 174495 84260 174045z" fill="url(#gm)" stroke="#0b1219" stroke-width="320" stroke-linejoin="round"/>
+        <text x="119576" y="160703" fill="#fff" font-size="3400" font-weight="700" font-family="Arial,sans-serif" text-anchor="middle" dominant-baseline="central">SC</text>
+        <text x="105887" y="172546" fill="#fff" font-size="3800" font-weight="700" font-family="Arial,sans-serif" text-anchor="middle" dominant-baseline="central">RS</text>
+      </svg>
+      <div><b>RS</b><p>Atuação consolidada</p><b>SC</b><p>Expansão comercial</p></div>
+    </div>
+  </div>
+</section>
 
-    <main>
-      <section class="hero" id="inicio">
-        <div class="container">
-          <div class="eyebrow">Tecnologias integradas • Rio Grande/RS</div>
-          <h1>TECNOLOGIA QUE MANTÉM SUA <span>OPERAÇÃO EM MOVIMENTO.</span></h1>
-          <p>
-            Infraestrutura de TI, redes, segurança eletrônica, automação de
-            acessos e manutenção técnica para empresas e operações que não podem
-            parar.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
-            <a class="btn btn-outline" href="#servicos">CONHECER SERVIÇOS</a>
-          </div>
-          <div class="hero-meta">
-            <div><b>REDES</b>Infraestrutura & conectividade</div>
-            <div><b>SEGURANÇA</b>CFTV & controle de acesso</div>
-            <div><b>AUTOMAÇÃO</b>Cancelas & acessos</div>
-            <div><b>MANUTENÇÃO</b>Preventiva & corretiva</div>
-          </div>
-        </div>
-      </section>
+<section class="section" id="projetos">
+  <div class="container cases">
+    <div>
+      <div class="kicker">Nosso trabalho</div>
+      <h2>Projetos e cases</h2>
+      <p class="sub">Conheça alguns dos nossos projetos e veja como aplicamos nossas soluções em diferentes ambientes e desafios.</p>
+      <a class="btn btn-red-outline" style="margin-top:18px" href="#contato">Ver todos os projetos →</a>
+    </div>
+    <div class="cases4">
+      <div class="case" style="background-image:url(assets/cases_redes_e_fibra_optica.jpg)"><b>Infraestrutura de rede</b><span>Cabeamento e fibra óptica</span></div>
+      <div class="case" style="background-image:url(assets/cases_cftv_e_controle_de_acesso.jpg)"><b>CFTV e segurança</b><span>Monitoramento e controle de acesso</span></div>
+      <div class="case" style="background-image:url(assets/cases_cancelar_e_portoes.jpg)"><b>Automação de acessos</b><span>Cancelas e torniquetes</span></div>
+      <div class="case" style="background-image:url(assets/secao_oque_fazemos_automacao_de_acesso.jpg)"><b>Manutenção técnica</b><span>Diagnóstico e reparos</span></div>
+    </div>
+  </div>
+</section>
 
-      <section class="strip">
-        <div class="container strip-inner">
-          <strong>SOLUÇÕES PARA SUA OPERAÇÃO</strong>
-          <div class="strip-items">
-            <span>REDES</span><span>FIBRA ÓPTICA</span><span>CFTV</span
-            ><span>CONTROLE DE ACESSO</span><span>AUTOMAÇÃO</span
-            ><span>MANUTENÇÃO</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="empresa">
-        <div class="container intro">
-          <div>
-            <div class="section-kicker">O que fazemos</div>
-            <h2>Infraestrutura tecnológica para operações reais.</h2>
-            <p class="lead">
-              A HELPY SERVICE desenvolve, instala e mantém soluções para
-              ambientes corporativos, industriais e operacionais.
-            </p>
-            <p>
-              Combinamos infraestrutura, segurança eletrônica, automação e
-              manutenção técnica para reduzir indisponibilidades e manter os
-              sistemas essenciais funcionando.
-            </p>
-            <div class="checks">
-              <div class="check">
-                <i>✓</i><span>Diagnóstico e solução técnica</span>
-              </div>
-              <div class="check">
-                <i>✓</i><span>Projetos personalizados</span>
-              </div>
-              <div class="check">
-                <i>✓</i><span>Manutenção preventiva e corretiva</span>
-              </div>
-            </div>
-          </div>
-          <div class="visual-stack">
-            <div class="visual tall">
-              <img
-                src="assets/secao_oque_fazemos_infraestrutura_e_racks.jpg"
-                alt="Infraestrutura de rede e racks"
-                loading="lazy"
-              />
-              <span class="visual-label">Infraestrutura & racks</span>
-            </div>
-            <div class="visual small">
-              <img
-                src="assets/secao_oque_fazemos_automacao_de_acesso.jpg"
-                alt="Automação de acesso"
-                loading="lazy"
-              />
-              <span class="visual-label">Automação & acesso</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-light" id="servicos">
-        <div class="container">
-          <div class="section-kicker">Especialidades</div>
-          <h2>Soluções que conectam,<br />protegem e mantêm.</h2>
-          <p class="lead">
-            Da infraestrutura ao equipamento final, a HELPY integra tecnologia,
-            manutenção e suporte técnico.
-          </p>
-          <div class="services-grid">
-            <article class="card">
-              <div class="card-num">01 / REDES</div>
-              <h3>REDES & INFRAESTRUTURA</h3>
-              <p>
-                Infraestrutura de comunicação para ambientes corporativos e
-                industriais.
-              </p>
-              <ul>
-                <li>Cabeamento estruturado</li>
-                <li>Fibra óptica</li>
-                <li>Racks e patch panels</li>
-                <li>Wi-Fi e links</li>
-              </ul>
-              <a class="link" href="#contato">SAIBA MAIS →</a>
-            </article>
-            <article class="card">
-              <div class="card-num">02 / SEGURANÇA</div>
-              <h3>SEGURANÇA ELETRÔNICA</h3>
-              <p>
-                Monitoramento, proteção e controle das áreas da sua empresa.
-              </p>
-              <ul>
-                <li>CFTV</li>
-                <li>Câmeras IP</li>
-                <li>Controle de acesso</li>
-                <li>Infraestrutura</li>
-              </ul>
-              <a class="link" href="#contato">SAIBA MAIS →</a>
-            </article>
-            <article class="card">
-              <div class="card-num">03 / AUTOMAÇÃO</div>
-              <h3>AUTOMAÇÃO DE ACESSOS</h3>
-              <p>Equipamentos para controlar o fluxo de pessoas e veículos.</p>
-              <ul>
-                <li>Cancelas</li>
-                <li>Portões</li>
-                <li>Torniquetes</li>
-                <li>Catracas e sensores</li>
-              </ul>
-              <a class="link" href="#contato">SAIBA MAIS →</a>
-            </article>
-            <article class="card">
-              <div class="card-num">04 / MANUTENÇÃO</div>
-              <h3>MANUTENÇÃO TÉCNICA</h3>
-              <p>Prevenção, correção e acompanhamento para reduzir paradas.</p>
-              <ul>
-                <li>Preventiva</li>
-                <li>Corretiva</li>
-                <li>Diagnóstico</li>
-                <li>Relatórios técnicos</li>
-              </ul>
-              <a class="link" href="#contato">SOLICITAR ATENDIMENTO →</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-dark" id="manutencao">
-        <div class="container problem">
-          <div>
-            <div class="section-kicker">Manutenção</div>
-            <p class="big-statement">
-              SUA OPERAÇÃO <span>NÃO PODE PARAR.</span>
-            </p>
-          </div>
-          <div>
-            <p class="lead">
-              Uma falha em rede, câmera, cancela, portão ou sistema de acesso
-              pode afetar toda a operação.
-            </p>
-            <p>
-              É aí que entra a HELPY: identificação, correção e prevenção de
-              falhas, com visão integrada de infraestrutura e equipamentos.
-            </p>
-            <a class="btn btn-primary" href="#contato">FALAR COM A HELPY</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-light">
-        <div class="container">
-          <div class="section-kicker">Contratos</div>
-          <h2>Manutenção contínua para empresas que não podem parar.</h2>
-          <p class="lead">
-            Tenha acompanhamento técnico contínuo para sua infraestrutura e seus
-            equipamentos.
-          </p>
-          <div class="plans">
-            <div class="plan">
-              <h3>MANUTENÇÃO PREVENTIVA</h3>
-              <p>
-                Rotinas programadas para identificar desgastes e falhas antes
-                que afetem a operação.
-              </p>
-              <ul>
-                <li>Inspeções técnicas</li>
-                <li>Checklist de equipamentos</li>
-                <li>Recomendações de correção</li>
-                <li>Histórico de manutenção</li>
-              </ul>
-            </div>
-            <div class="plan">
-              <h3>MANUTENÇÃO CORRETIVA</h3>
-              <p>
-                Atendimento técnico para diagnóstico e recuperação de
-                equipamentos e infraestrutura.
-              </p>
-              <ul>
-                <li>Diagnóstico de falhas</li>
-                <li>Reparo e substituição</li>
-                <li>Testes operacionais</li>
-                <li>Relatório técnico</li>
-              </ul>
-            </div>
-          </div>
-          <div style="margin-top: 24px">
-            <a class="btn btn-dark" href="#contato"
-              >QUERO UM CONTRATO DE MANUTENÇÃO</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-kicker">Segmentos</div>
-          <h2>Tecnologia para diferentes operações.</h2>
-          <div class="segment-grid">
-            <div class="segment">
-              <img src="assets/segmentos_industrias.jpg" alt="Indústrias" loading="lazy" />
-              <b>INDÚSTRIAS</b
-              ><span>Infraestrutura, redes, segurança e automação.</span>
-            </div>
-            <div class="segment">
-              <img src="assets/segmentos_terminais_portuarios.jpg" alt="Terminais portuários" loading="lazy" />
-              <b>TERMINAIS PORTUÁRIOS</b
-              ><span
-                >Infraestrutura e manutenção em ambientes operacionais.</span
-              >
-            </div>
-            <div class="segment">
-              <img src="assets/segmentos_logistica.jpg" alt="Logística" loading="lazy" />
-              <b>LOGÍSTICA</b
-              ><span>Controle de acessos, CFTV e conectividade.</span>
-            </div>
-            <div class="segment">
-              <img src="assets/segmentos_empresas.jpg" alt="Empresas" loading="lazy" />
-              <b>EMPRESAS</b
-              ><span>Redes, segurança eletrônica e manutenção.</span>
-            </div>
-            <div class="segment">
-              <img src="assets/segmentos_centro_comerciais.jpg" alt="Centros comerciais" loading="lazy" />
-              <b>CENTROS COMERCIAIS</b
-              ><span>Controle de acesso, CFTV e infraestrutura.</span>
-            </div>
-            <div class="segment">
-              <img src="assets/segmentos_condominio.jpg" alt="Condomínios" loading="lazy" />
-              <b>CONDOMÍNIOS</b><span>Segurança, acesso e automação.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-light" id="projetos">
-        <div class="container">
-          <div class="section-kicker">Projetos & cases</div>
-          <h2>Projetos que colocam a tecnologia em operação.</h2>
-          <p class="lead">
-            Soluções aplicadas em ambientes corporativos, industriais e
-            operacionais.
-          </p>
-          <div class="cases">
-            <article class="case">
-              <img src="assets/cases_redes_e_fibra_optica.jpg" alt="Redes e fibra óptica" loading="lazy" />
-              <small>01 / INFRAESTRUTURA</small>
-              <h3>Redes & Fibra Óptica</h3>
-              <p>
-                Implantação, organização e manutenção de infraestrutura de
-                comunicação.
-              </p>
-            </article>
-            <article class="case">
-              <img src="assets/cases_cftv_e_controle_de_acesso.jpg" alt="CFTV e controle de acesso" loading="lazy" />
-              <small>02 / SEGURANÇA</small>
-              <h3>CFTV & Controle de Acesso</h3>
-              <p>Infraestrutura, manutenção e integração de sistemas.</p>
-            </article>
-            <article class="case">
-              <img src="assets/cases_cancelar_e_portoes.jpg" alt="Cancelas e portões" loading="lazy" />
-              <small>03 / AUTOMAÇÃO</small>
-              <h3>Cancelas & Portões</h3>
-              <p>Manutenção e recuperação de sistemas de controle de acesso.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-kicker">Nosso método</div>
-          <h2>Do problema à solução.</h2>
-          <div class="process">
-            <div class="step">
-              <b>01</b>
-              <h3>DIAGNÓSTICO</h3>
-              <p>Entendemos a demanda e avaliamos a infraestrutura.</p>
-            </div>
-            <div class="step">
-              <b>02</b>
-              <h3>PLANEJAMENTO</h3>
-              <p>Definimos a solução técnica e os materiais necessários.</p>
-            </div>
-            <div class="step">
-              <b>03</b>
-              <h3>EXECUÇÃO</h3>
-              <p>Nossa equipe realiza a intervenção planejada.</p>
-            </div>
-            <div class="step">
-              <b>04</b>
-              <h3>ACOMPANHAMENTO</h3>
-              <p>Documentamos o serviço e indicamos ações preventivas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-dark">
-        <div class="container">
-          <div class="section-kicker">Por que a HELPY?</div>
-          <h2>Uma equipe. Várias especialidades.</h2>
-          <div class="why-grid">
-            <div class="why">
-              <b>EXPERIÊNCIA TÉCNICA</b>
-              <p>
-                Conhecimento aplicado em infraestrutura e sistemas tecnológicos.
-              </p>
-            </div>
-            <div class="why">
-              <b>VISÃO INTEGRADA</b>
-              <p>
-                Redes, segurança, automação e manutenção trabalhando em
-                conjunto.
-              </p>
-            </div>
-            <div class="why">
-              <b>AGILIDADE</b>
-              <p>Atendimento direcionado para minimizar indisponibilidades.</p>
-            </div>
-            <div class="why">
-              <b>TRANSPARÊNCIA</b>
-              <p>Diagnóstico e execução documentados.</p>
-            </div>
-            <div class="why">
-              <b>MANUTENÇÃO</b>
-              <p>Prevenção para reduzir falhas e prolongar a vida útil.</p>
-            </div>
-            <div class="why">
-              <b>SOLUÇÕES PERSONALIZADAS</b>
-              <p>Projetos desenvolvidos de acordo com cada operação.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="sobre">
-        <div class="container intro">
-          <div class="visual tall">
-            <img
-              src="assets/secao_sobre_a_helpy.jpg"
-              alt="Equipe técnica da Helpy Service"
-              loading="lazy"
-            />
-            <span class="visual-label"
-              >HELPY SERVICE • TECNOLOGIAS INTEGRADAS</span
-            >
-          </div>
-          <div>
-            <div class="section-kicker">Sobre a HELPY</div>
-            <h2>Tecnologia integrada para empresas.</h2>
-            <p class="lead">
-              Desenvolvemos soluções integradas e projetos corporativos
-              customizados de tecnologia da informação.
-            </p>
-            <p>
-              Nossa atuação combina infraestrutura, segurança eletrônica,
-              automação e manutenção técnica para entregar soluções adequadas à
-              realidade de cada cliente.
-            </p>
-            <a class="btn btn-dark" href="#contato">CONHEÇA A HELPY</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="cta">
-        <div class="container">
-          <div>
-            <div class="section-kicker">Fale com a equipe</div>
-            <h2>Precisa resolver um problema ou planejar um projeto?</h2>
-            <p class="lead" style="color: #bbb">
-              Conte o que sua empresa precisa. A HELPY avalia a demanda e indica
-              o caminho técnico adequado.
-            </p>
-          </div>
-          <a class="btn btn-primary" href="#contato">SOLICITAR ORÇAMENTO</a>
-        </div>
-      </section>
-
-      <section class="section form-section" id="contato">
-        <div class="container contact-grid">
-          <div class="contact-info">
-            <div class="section-kicker">Contato</div>
-            <h3>Vamos conversar sobre sua operação?</h3>
-            <p>Envie sua necessidade e nossa equipe entrará em contato.</p>
-            <div class="item"><b>HELPY SERVICE</b>F. M. KROTH LTDA.</div>
-            <div class="item"><b>Localização</b>Rio Grande — RS</div>
-            <div class="item"><b>Comercial</b>+55 53 9904-2226</div>
-            <div class="item"><b>E-mail</b>contato@helpyservice.com.br</div>
-          </div>
-          <form class="form" id="form-contato">
-            <div class="field">
-              <label for="nome">NOME</label
-              ><input id="nome" name="nome" type="text" placeholder="Seu nome" required />
-            </div>
-            <div class="field">
-              <label for="empresa">EMPRESA</label
-              ><input id="empresa" name="empresa" type="text" placeholder="Nome da empresa" />
-            </div>
-            <div class="field">
-              <label for="telefone">TELEFONE / WHATSAPP</label
-              ><input id="telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" required />
-            </div>
-            <div class="field">
-              <label for="email">E-MAIL</label
-              ><input id="email" name="email" type="email" placeholder="seu@email.com" />
-            </div>
-            <div class="field full">
-              <label for="servico">TIPO DE SERVIÇO</label
-              ><select id="servico" name="servico">
-                <option value="">Selecione</option>
-                <option>Redes / Infraestrutura</option>
-                <option>Fibra Óptica</option>
-                <option>CFTV</option>
-                <option>Controle de Acesso</option>
-                <option>Cancela / Portão</option>
-                <option>Torniquete / Catraca</option>
-                <option>Manutenção</option>
-                <option>Projeto</option>
-                <option>Outro</option>
-              </select>
-            </div>
-            <div class="field full">
-              <label for="mensagem">DESCREVA SUA NECESSIDADE</label
-              ><textarea
-                id="mensagem"
-                name="mensagem"
-                placeholder="Conte brevemente o que sua empresa precisa."
-              ></textarea>
-            </div>
-            <div class="field full">
-              <button class="btn btn-primary" type="submit">
-                ENVIAR SOLICITAÇÃO
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div>
-            <a class="logo" href="#inicio" aria-label="Helpy Service - Início">
-              <img
-                src="assets/logo.png"
-                alt="Helpy Service - Tecnologias Integradas"
-              />
-            </a>
-            <p style="max-width: 360px">
-              Infraestrutura, segurança, automação e manutenção para operações
-              que não podem parar.
-            </p>
-          </div>
-          <div>
-            <h4>SERVIÇOS</h4>
-            <a href="#servicos">Redes & Infraestrutura</a
-            ><a href="#servicos">Segurança Eletrônica</a
-            ><a href="#servicos">Automação de Acessos</a
-            ><a href="#manutencao">Manutenção Técnica</a>
-          </div>
-          <div>
-            <h4>NAVEGAÇÃO</h4>
-            <a href="#inicio">Início</a><a href="#projetos">Projetos</a
-            ><a href="#empresa">A HELPY</a><a href="#contato">Contato</a>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <span>© 2026 HELPY SERVICE — F. M. KROTH LTDA.</span
-          ><span>Todos os direitos reservados.</span>
-        </div>
+<section class="contact" id="contato">
+  <div class="container cgrid">
+    <div class="l">
+      <h2 id="sobre">Vamos conversar?</h2>
+      <p class="sub" style="font-size:12px">Solicite uma proposta ou tire suas dúvidas. Nossa equipe está pronta para atender sua empresa.</p>
+      <a class="btn btn-red-outline" style="margin-top:16px;color:#fff;border-color:rgba(255,255,255,.5)" href="#projetos">Ver todos os projetos →</a>
+    </div>
+    <div class="r">
+      <div class="wa">
+        <img src="assets/logo-whatsapp.svg" alt="WhatsApp" />
+        <b style="color:#fff">Fale conosco pelo WhatsApp</b>
+        <span>Atendimento rápido e direto com nossa equipe técnica.</span>
+        <a class="btn btn-primary" href="https://wa.me/555399042226" target="_blank" rel="noopener">Iniciar conversa →</a>
       </div>
-    </footer>
+      <form class="form" id="form-contato">
+        <small>Ou preencha o formulário</small>
+        <input id="empresa" name="empresa" type="text" placeholder="Nome da empresa *" />
+        <input id="nome" name="nome" type="text" placeholder="Seu nome *" required />
+        <input id="email" name="email" type="email" placeholder="E-mail corporativo *" />
+        <input id="telefone" name="telefone" type="tel" placeholder="Telefone / WhatsApp *" required />
+        <select id="servico" name="servico">
+          <option value="">Tipo de serviço *</option>
+          <option>Redes / Infraestrutura</option><option>Fibra Óptica</option><option>CFTV</option>
+          <option>Controle de Acesso</option><option>Cancela / Portão</option><option>Torniquete / Catraca</option>
+          <option>Manutenção</option><option>Projeto</option><option>Outro</option>
+        </select>
+        <textarea id="mensagem" name="mensagem" placeholder="Descreva sua necessidade *"></textarea>
+        <button class="btn btn-primary full" type="submit">Enviar solicitação →</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
 
-    <a
-      class="whatsapp"
-      href="https://wa.me/555399042226"
-      target="_blank"
-      rel="noopener"
-      aria-label="Falar pelo WhatsApp"
-    >
-      <img src="assets/logo-whatsapp.svg" alt="WhatsApp" />
-    </a>
-    <script>
-      (function () {
-        var form = document.getElementById("form-contato");
-        if (!form) return;
-        var DESTINO = "contato@helpyservice.com.br";
+<footer class="footer">
+  <div class="container">
+    <div class="fgrid">
+      <a class="logo" href="#inicio" aria-label="Helpy Service"><img src="assets/logo.png" alt="Helpy Service - Tecnologias Integradas" style="height:40px" /></a>
+      <div><h4>Serviços</h4><a href="#servicos">Redes e TI</a><a href="#servicos">Segurança eletrônica</a><a href="#servicos">Automação de acessos</a><a href="#manutencao">Manutenção</a></div>
+      <div><h4>Institucional</h4><a href="#sobre">Sobre a Helpy</a><a href="#projetos">Projetos</a><a href="#segmentos">Segmentos</a><a href="#contato">Contato</a></div>
+      <div><h4>Atendimento</h4><a href="tel:+555399042226">📞 (53) 9904-2226</a><a href="mailto:contato@helpyservice.com.br">✉ contato@helpyservice.com.br</a><span>📍 Rio Grande - RS<br>Unidade de atendimento em Rio Grande - RS</span></div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 Helpy Service. Todos os direitos reservados. | Tecnologia que mantém sua operação em movimento. — F. M. KROTH LTDA.</span>
+      <span>Desenvolvido por Helpy Service</span>
+    </div>
+  </div>
+</footer>
 
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          var v = function (id) {
-            return form.elements[id].value.trim();
-          };
-
-          var servico = v("servico");
-          var assunto =
-            "Solicitação de orçamento" + (servico ? " - " + servico : "");
-
-          var linhas = [
-            "Nome: " + v("nome"),
-            "Empresa: " + (v("empresa") || "-"),
-            "Telefone/WhatsApp: " + v("telefone"),
-            "E-mail: " + (v("email") || "-"),
-            "Tipo de serviço: " + (servico || "-"),
-            "",
-            "Necessidade:",
-            v("mensagem") || "-",
-          ];
-
-          window.location.href =
-            "mailto:" +
-            DESTINO +
-            "?subject=" +
-            encodeURIComponent(assunto) +
-            "&body=" +
-            encodeURIComponent(linhas.join("\r\n"));
-        });
-      })();
-    </script>
-  </body>
+<a class="whatsapp" href="https://wa.me/555399042226" target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp"><img src="assets/logo-whatsapp.svg" alt="WhatsApp" /></a>
+<script>
+(function () {
+  var form = document.getElementById("form-contato");
+  if (!form) return;
+  var DESTINO = "contato@helpyservice.com.br";
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (id) { return form.elements[id].value.trim(); };
+    var servico = v("servico");
+    var assunto = "Solicitação de orçamento" + (servico ? " - " + servico : "");
+    var linhas = [
+      "Nome: " + v("nome"),
+      "Empresa: " + (v("empresa") || "-"),
+      "Telefone/WhatsApp: " + v("telefone"),
+      "E-mail: " + (v("email") || "-"),
+      "Tipo de serviço: " + (servico || "-"),
+      "",
+      "Necessidade:",
+      v("mensagem") || "-"
+    ];
+    window.location.href = "mailto:" + DESTINO + "?subject=" + encodeURIComponent(assunto) + "&body=" + encodeURIComponent(linhas.join("\r\n"));
+  });
+})();
+</script>
+</body>
 </html>
